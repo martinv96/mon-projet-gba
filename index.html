@@ -71,6 +71,11 @@
             <button class="btn-control bg-blue-500 text-white rounded-full w-12 h-12 shadow hover:bg-blue-600" data-key="KeyX">B</button>
           </div>
           <div class="flex gap-3 justify-center mt-2">
+  <button class="btn-control bg-purple-500 text-white rounded px-4 py-1 shadow hover:bg-purple-600" data-key="KeyA">L</button>
+  <button class="btn-control bg-indigo-500 text-white rounded px-4 py-1 shadow hover:bg-indigo-600" data-key="KeyS">R</button>
+</div>
+
+          <div class="flex gap-3 justify-center mt-2">
             <button class="btn-control bg-green-500 text-white rounded px-5 py-1 shadow hover:bg-green-600" data-key="Enter">Start</button>
             <button class="btn-control bg-yellow-400 text-white rounded px-5 py-1 shadow hover:bg-yellow-500" data-key="ShiftLeft">Select</button>
           </div>
@@ -223,5 +228,30 @@
       }
     });
   </script>
+  <script>
+  // Simule une pression de touche clavier quand un bouton est cliqué
+  document.querySelectorAll('.btn-control').forEach(button => {
+    button.addEventListener('click', () => {
+      const key = button.getAttribute('data-key');
+      if (!key) return;
+
+      const event = new KeyboardEvent('keydown', {
+        key: key.length === 1 ? key : '',
+        code: key,
+        bubbles: true
+      });
+      window.dispatchEvent(event);
+
+      // Ajoute aussi un keyup pour éviter le "blocage"
+      const eventUp = new KeyboardEvent('keyup', {
+        key: key.length === 1 ? key : '',
+        code: key,
+        bubbles: true
+      });
+      setTimeout(() => window.dispatchEvent(eventUp), 100); // 100ms plus tard
+    });
+  });
+</script>
+
 </body>
 </html>
