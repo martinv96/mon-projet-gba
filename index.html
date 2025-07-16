@@ -21,7 +21,9 @@
         <a href="apiPokemon.html" class="text-gray-700 hover:text-gray-600">API Pokémon</a>
       </nav>
 
-      <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none" aria-label="Toggle menu">☰</button>
+      <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none" aria-label="Toggle menu">
+        ☰
+      </button>
     </div>
 
     <!-- Menu mobile -->
@@ -32,16 +34,12 @@
       <a href="apiPokemon.html" class="block text-gray-700 hover:text-gray-600">API Pokémon</a>
     </div>
   </header>
-
-  <!-- Contenu principal -->
- <main class="max-w-6xl mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-8 flex-grow">
-
-    <!-- Émulateur -->
-    <section class="md:col-span-2">
+  <div class="max-w-6xl mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <!-- Partie principale : émulateur -->
+    <div class="col-span-2">
       <h1 class="text-3xl font-bold text-center mb-6 text-red-600">Émulateur Pokémon Rubis</h1>
 
-      <!-- Conteneur canvas, responsive -->
-      <div id="canvas-wrapper" class="relative mx-auto w-full max-w-md" style="aspect-ratio: 3 / 2;">
+      <div id="canvas-wrapper" class="relative mx-auto w-full max-w-[480px] h-auto" style="aspect-ratio: 3 / 2;">
         <img id="rom-image" src="public/emulator/rom/pokemonRubis.jpg" alt="Pokémon Rubis"
           class="absolute inset-0 w-full h-full object-contain block" />
         <canvas id="gba-screen" width="480" height="320"
@@ -49,66 +47,71 @@
           style="image-rendering: pixelated; image-rendering: crisp-edges;"></canvas>
       </div>
 
-      <!-- Contrôles tactiles -->
+      <!-- Boutons tactiles - version Tailwind, intégrée -->
       <div id="touch-controls"
-        class="grid grid-cols-5 gap-3 p-4 bg-gray-900 rounded-xl text-white max-w-md mx-auto my-8 shadow-lg">
-
+        class="grid grid-cols-5 gap-4 p-6 bg-gray-900 rounded-xl text-white max-w-md mx-auto my-8 shadow-lg">
+        <!-- Bouton L -->
         <button data-key="L"
-          class="col-span-1 bg-yellow-600 hover:bg-yellow-700 font-bold py-2 px-3 rounded-lg shadow-md text-sm sm:text-base">L</button>
+          class="col-span-1 bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-lg shadow-md">L</button>
 
+        <!-- Espace vide centré -->
         <div class="col-span-3"></div>
 
+        <!-- Bouton R -->
         <button data-key="R"
-          class="col-span-1 bg-yellow-600 hover:bg-yellow-700 font-bold py-2 px-3 rounded-lg shadow-md text-sm sm:text-base">R</button>
+          class="col-span-1 bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-lg shadow-md">R</button>
 
         <!-- Croix directionnelle -->
         <div class="col-span-2 flex flex-col items-center justify-center">
-          <button data-key="UP" class="w-8 h-8 mb-1 sm:w-10 sm:h-10 bg-red-600 hover:bg-red-700 rounded-full shadow-md">↑</button>
-          <div class="flex space-x-1 sm:space-x-2">
-            <button data-key="LEFT" class="w-8 h-8 bg-red-600 hover:bg-red-700 rounded-full shadow-md">←</button>
-            <div class="w-8 h-8 sm:w-10 sm:h-10"></div>
-            <button data-key="RIGHT" class="w-8 h-8 bg-red-600 hover:bg-red-700 rounded-full shadow-md">→</button>
+          <button data-key="UP" class="w-10 h-10 mb-2 bg-red-600 hover:bg-red-700 rounded-full shadow-md">↑</button>
+          <div class="flex space-x-2">
+            <button data-key="LEFT" class="w-10 h-10 bg-red-600 hover:bg-red-700 rounded-full shadow-md">←</button>
+            <div class="w-10 h-10"></div>
+            <button data-key="RIGHT" class="w-10 h-10 bg-red-600 hover:bg-red-700 rounded-full shadow-md">→</button>
           </div>
-          <button data-key="DOWN" class="w-8 h-8 mt-1 sm:w-10 sm:h-10 bg-red-600 hover:bg-red-700 rounded-full shadow-md">↓</button>
+          <button data-key="DOWN" class="w-10 h-10 mt-2 bg-red-600 hover:bg-red-700 rounded-full shadow-md">↓</button>
         </div>
 
+        <!-- Espace vide -->
         <div></div>
 
         <!-- Boutons A et B -->
-        <div class="col-span-2 flex flex-col items-center justify-center space-y-1 sm:space-y-2">
-          <button data-key="A" class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 hover:bg-blue-700 text-lg rounded-full shadow-md">A</button>
-          <button data-key="B" class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 hover:bg-blue-700 text-lg rounded-full shadow-md">B</button>
+        <div class="col-span-2 flex flex-col items-center justify-center space-y-2">
+          <button data-key="A" class="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-lg rounded-full shadow-md">A</button>
+          <button data-key="B" class="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-lg rounded-full shadow-md">B</button>
         </div>
 
         <!-- Boutons Start et Select -->
-        <div class="col-span-5 flex justify-center gap-3 mt-3 sm:mt-4">
-          <button data-key="START"
-            class="bg-green-600 hover:bg-green-700 py-2 px-5 rounded-lg shadow-md text-sm sm:text-base">Start</button>
+        <div class="col-span-5 flex justify-center gap-4 mt-4">
+          <button data-key="START" class="bg-green-600 hover:bg-green-700 py-2 px-6 rounded-lg shadow-md">Start</button>
           <button data-key="SELECT"
-            class="bg-green-600 hover:bg-green-700 py-2 px-5 rounded-lg shadow-md text-sm sm:text-base">Select</button>
+            class="bg-green-600 hover:bg-green-700 py-2 px-6 rounded-lg shadow-md">Select</button>
         </div>
       </div>
 
-      <!-- Boutons zoom et lancement -->
-      <div class="text-center mt-4 space-y-4 max-w-md mx-auto">
-        <button id="startBtn"
-          class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg shadow">Lancer l’émulateur</button>
-
+      <div class="text-center mt-4">
         <button id="reset-positions"
           class="bg-gray-800 hover:bg-black text-white py-2 px-4 rounded shadow">Réinitialiser les positions</button>
-
-        <div>
-          <label for="zoomSelect" class="mr-2 font-semibold text-gray-700">Zoom :</label>
-          <select id="zoomSelect" class="border rounded p-1 shadow">
-            <option value="1">x1</option>
-            <option value="2" selected>x2</option>
-          </select>
-        </div>
       </div>
-    </section>
 
-    <!-- Nouvelle section soluce, pleine largeur -->
-  <section class="col-span-3 bg-white p-6 rounded-lg shadow-lg mt-8">
+      <div class="mt-4 text-center">
+        <button id="startBtn"
+          class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg shadow">Lancer
+          l’émulateur</button>
+      </div>
+
+      <div class="mt-2 text-center">
+        <label for="zoomSelect" class="mr-2 font-semibold text-gray-700">Zoom :</label>
+        <select id="zoomSelect" class="border rounded p-1 shadow">
+          <option value="1">x1</option>
+          <option value="2" selected>x2</option>
+          <option value="3">x3</option>
+          <option value="4">x4</option>
+        </select>
+      </div>
+    </div>
+
+    <section class="col-span-3 bg-white p-6 rounded-lg shadow-lg mt-8">
   <h2 class="text-2xl font-bold mb-6 text-center text-red-600">Soluce Pokémon Rubis GBA</h2>
 
   <div class="space-y-4" id="accordion">
@@ -273,17 +276,12 @@
     </div>
   </div>
 </section>
-  </main>
+  </div>
 
   <!-- Footer -->
   <footer class="bg-white shadow p-4 text-center text-sm text-gray-600">
     &copy; 2025 - Mon projet GBA
   </footer>
-   <script src="public/emulator/zoomHandler.js"></script>
-</body>
-
-</html>
-
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
@@ -505,25 +503,19 @@
   </script>
 <script>
   function toggleAccordion(event) {
-    const button = event.currentTarget;
-    const contentId = button.getAttribute('aria-controls');
-    const content = document.getElementById(contentId);
+    const btn = event.currentTarget;
+    const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+    const content = document.getElementById(btn.getAttribute('aria-controls'));
+    const icon = btn.querySelector('svg');
 
-    const expanded = button.getAttribute('aria-expanded') === 'true';
-
-    // Fermer toutes les sections (optionnel : pour laisser une seule ouverte)
-    document.querySelectorAll('#accordion > div > button').forEach(btn => {
+    if (isExpanded) {
       btn.setAttribute('aria-expanded', 'false');
-      btn.querySelector('svg').classList.remove('rotate-180');
-      const sec = document.getElementById(btn.getAttribute('aria-controls'));
-      if (sec) sec.classList.add('hidden');
-    });
-
-    // Ouvrir ou fermer la section cliquée
-    if (!expanded) {
-      button.setAttribute('aria-expanded', 'true');
-      button.querySelector('svg').classList.add('rotate-180');
+      content.classList.add('hidden');
+      icon.classList.remove('rotate-180');
+    } else {
+      btn.setAttribute('aria-expanded', 'true');
       content.classList.remove('hidden');
+      icon.classList.add('rotate-180');
     }
   }
 </script>
