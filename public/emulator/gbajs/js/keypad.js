@@ -167,3 +167,73 @@ GameBoyAdvanceKeypad.prototype.registerHandlers = function() {
 	window.addEventListener("mozgamepaddisconnected", this.gamepadDisconnectHandler.bind(this), true);
 	window.addEventListener("webkitgamepaddisconnected", this.gamepadDisconnectHandler.bind(this), true);
 };
+
+// ** Nouvelle méthode tactile **
+GameBoyAdvanceKeypad.prototype.touchHandler = function(e) {
+	const keyName = e.target.getAttribute('data-key');
+	if (!keyName) return;
+
+	const keyMap = {
+		'LEFT': this.LEFT,
+		'UP': this.UP,
+		'RIGHT': this.RIGHT,
+		'DOWN': this.DOWN,
+		'START': this.START,
+		'SELECT': this.SELECT,
+		'A': this.A,
+		'B': this.B,
+		'L': this.L,
+		'R': this.R,
+	};
+
+	const toggle = keyMap[keyName];
+	if (toggle === undefined) return;
+
+	let bit = 1 << toggle;
+	let isDown = (e.type === 'touchstart' || e.type === 'mousedown');
+
+	if (isDown) {
+		this.currentDown &= ~bit;
+	} else {
+		this.currentDown |= bit;
+	}
+
+	e.preventDefault();
+};
+
+// ** Nouvelle méthode pour enregistrer les événements tactiles **
+GameBoyAdvanceKeypad.prototype.registerTouchHandlers = function() {
+  const controls = document.getElementById('touch-controls');
+  if (!controls) {
+    console.log('touch-controls not found');
+    return;
+  }
+  console.log('Registering touch handlers');
+  controls.querySelectorAll('button').forEach(button => {
+    button.addEventListener('touchstart', this.touchHandler.bind(this), {passive:false});
+button.addEventListener('touchend', this.touchHandler.bind(this), {passive:false});
+button.addEventListener('touchcancel', (e) => console.log('touchcancel', e), {passive:false});
+button.addEventListener('touchmove', (e) => console.log('touchmove', e), {passive:false});
+
+  });
+};
+
+
+GameBoyAdvanceKeypad.prototype.registerHandlers = function() {
+	window.addEventListener("keydown", this.keyboardHandler.bind(this), true);
+	window.addEventListener("keyup", this.keyboardHandler.bind(this), true);
+
+	window.addEventListener("gamepadconnected", this.gamepadConnectHandler.bind(this), true);
+	window.addEventListener("mozgamepadconnected", this.gamepadConnectHandler.bind(this), true);
+	window.addEventListener("webkitgamepadconnected", this.gamepadConnectHandler.bind(this), true);
+
+	window.addEventListener("gamepaddisconnected", this.gamepadDisconnectHandler.bind(this), true);
+	window.addEventListener("mozgamepaddisconnected", this.gamepadDisconnectHandler.bind(this), true);
+	window.addEventListener("webkitgamepaddisconnected", this.gamepadDisconnectHandler.bind(this), true);
+};
+
+// ** Nouvelle méthode pour initialiser l’ensemble **
+GameBoyAdvanceKeypad.prototype.init = function() {
+	this.registerHandlers();
+	this.registerTouchHandlers();
+};

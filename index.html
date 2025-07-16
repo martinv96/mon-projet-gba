@@ -47,45 +47,22 @@
           style="image-rendering: pixelated; image-rendering: crisp-edges;"></canvas>
       </div>
 
-      <!-- Boutons tactiles -->
-      <div id="mobile-controls" class="mt-4 flex flex-wrap justify-center gap-3 max-w-[480px] mx-auto">
-        <div class="grid grid-cols-3 grid-rows-3 gap-2 select-none">
-          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-2 row-start-1"
-            data-key="ArrowUp">↑</button>
-          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-1 row-start-2"
-            data-key="ArrowLeft">←</button>
-          <div></div>
-          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-2 row-start-2"
-            disabled></button>
-          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-3 row-start-2"
-            data-key="ArrowRight">→</button>
-          <div></div>
-          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-2 row-start-3"
-            data-key="ArrowDown">↓</button>
-        </div>
+      <!-- Boutons tactiles - version Tailwind, intégrée -->
+<div id="touch-controls" class="flex flex-wrap justify-center gap-3 p-4 bg-gray-800 rounded-lg max-w-md mx-auto my-6 shadow-lg">
+  <button data-key="LEFT" class="w-12 h-12 bg-red-600 text-white rounded-full shadow-md hover:bg-red-700 active:scale-95 transition-transform">←</button>
+  <button data-key="UP" class="w-12 h-12 bg-red-600 text-white rounded-full shadow-md hover:bg-red-700 active:scale-95 transition-transform">↑</button>
+  <button data-key="RIGHT" class="w-12 h-12 bg-red-600 text-white rounded-full shadow-md hover:bg-red-700 active:scale-95 transition-transform">→</button>
+  <button data-key="DOWN" class="w-12 h-12 bg-red-600 text-white rounded-full shadow-md hover:bg-red-700 active:scale-95 transition-transform">↓</button>
+  <button data-key="START" class="w-20 h-12 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 active:scale-95 transition-transform">Start</button>
+  <button data-key="SELECT" class="w-20 h-12 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 active:scale-95 transition-transform">Select</button>
+  <button data-key="A" class="w-12 h-12 bg-blue-600 text-white rounded-full shadow-md hover:bg-blue-700 active:scale-95 transition-transform">A</button>
+  <button data-key="B" class="w-12 h-12 bg-blue-600 text-white rounded-full shadow-md hover:bg-blue-700 active:scale-95 transition-transform">B</button>
+  <button data-key="L" class="w-12 h-12 bg-yellow-600 text-white rounded-full shadow-md hover:bg-yellow-700 active:scale-95 transition-transform">L</button>
+  <button data-key="R" class="w-12 h-12 bg-yellow-600 text-white rounded-full shadow-md hover:bg-yellow-700 active:scale-95 transition-transform">R</button>
+</div>
 
-        <div class="flex flex-col justify-center gap-3 select-none">
-          <div class="flex gap-3 justify-center">
-            <button class="btn-control bg-red-500 text-white rounded-full w-12 h-12 shadow hover:bg-red-600"
-              data-key="KeyZ">A</button>
-            <button class="btn-control bg-blue-500 text-white rounded-full w-12 h-12 shadow hover:bg-blue-600"
-              data-key="KeyX">B</button>
-          </div>
-          <div class="flex gap-3 justify-center mt-2">
-            <button class="btn-control bg-purple-500 text-white rounded px-4 py-1 shadow hover:bg-purple-600"
-              data-key="KeyA">L</button>
-            <button class="btn-control bg-indigo-500 text-white rounded px-4 py-1 shadow hover:bg-indigo-600"
-              data-key="KeyS">R</button>
-          </div>
 
-          <div class="flex gap-3 justify-center mt-2">
-            <button class="btn-control bg-green-500 text-white rounded px-5 py-1 shadow hover:bg-green-600"
-              data-key="Enter">Start</button>
-            <button class="btn-control bg-yellow-400 text-white rounded px-5 py-1 shadow hover:bg-yellow-500"
-              data-key="ShiftLeft">Select</button>
-          </div>
-        </div>
-      </div>
+
 
       <div class="text-center mt-4">
         <button id="reset-positions"
@@ -232,159 +209,47 @@
         startBtn.disabled = false;
       }
     });
-  </script>
 
-  <script>
-    // Gestion des boutons tactiles
-    document.querySelectorAll('.btn-control').forEach(button => {
-      const key = button.dataset.key;
-
-      if (!key) return;
-
-      button.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        if (gba && gba.keypad) {
-          gba.keypad.keyboardHandler({ code: key, type: 'keydown' });
-        }
-      });
-
-      button.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        if (gba && gba.keypad) {
-          gba.keypad.keyboardHandler({ code: key, type: 'keyup' });
-        }
-      });
-
-      // Aussi pour compatibilité avec clic souris
-      button.addEventListener('mousedown', (e) => {
-        if (gba && gba.keypad) {
-          gba.keypad.keyboardHandler({ code: key, type: 'keydown' });
-        }
-      });
-
-      button.addEventListener('mouseup', (e) => {
-        if (gba && gba.keypad) {
-          gba.keypad.keyboardHandler({ code: key, type: 'keyup' });
-        }
-      });
-    });
-  </script>
-
-
-  <script>
-    // Simule une pression de touche clavier quand un bouton est cliqué
-    document.querySelectorAll('.btn-control').forEach(button => {
-      button.addEventListener('click', () => {
-        const key = button.getAttribute('data-key');
-        if (!key) return;
-
-        const event = new KeyboardEvent('keydown', {
-          key: key.length === 1 ? key : '',
-          code: key,
-          bubbles: true
-        });
-        window.dispatchEvent(event);
-
-        // Ajoute aussi un keyup pour éviter le "blocage"
-        const eventUp = new KeyboardEvent('keyup', {
-          key: key.length === 1 ? key : '',
-          code: key,
-          bubbles: true
-        });
-        setTimeout(() => window.dispatchEvent(eventUp), 100); // 100ms plus tard
-      });
-    });
-  </script>
-
-  <script>
-    // Simulation des touches avec les boutons tactiles
-    const keypad = new GameBoyAdvanceKeypad();
-keypad.registerHandlers();
-keypad.eatInput = true;
-
-// Mappage des codes clavier (data-key) vers les propriétés du keypad
-const keyMap = {
-  "ArrowUp": "UP",
-  "ArrowDown": "DOWN",
-  "ArrowLeft": "LEFT",
-  "ArrowRight": "RIGHT",
-  "KeyZ": "A",
-  "KeyX": "B",
-  "KeyA": "L",
-  "KeyS": "R",
-  "Enter": "START",
-  "ShiftLeft": "SELECT",
-};
-
-function pressKey(logicalKey) {
-  if (!(logicalKey in keypad)) return;
-  const bit = 1 << keypad[logicalKey];
-  keypad.currentDown &= ~bit;
-}
-
-function releaseKey(logicalKey) {
-  if (!(logicalKey in keypad)) return;
-  const bit = 1 << keypad[logicalKey];
-  keypad.currentDown |= bit;
-}
-
-function bindTouchButtons() {
-  // Sélectionne tous les boutons avec data-key
-  const buttons = document.querySelectorAll("#mobile-controls button[data-key]");
-  buttons.forEach(button => {
-    const dataKey = button.getAttribute("data-key");
-    const logicalKey = keyMap[dataKey];
-
-    if (!logicalKey) return; // pas dans la map, ignore
-
-    button.addEventListener("touchstart", e => {
-      e.preventDefault();
-      pressKey(logicalKey);
-    });
-
-    button.addEventListener("touchend", e => {
-      e.preventDefault();
-      releaseKey(logicalKey);
-    });
-
-    button.addEventListener("mousedown", e => {
-      e.preventDefault();
-      pressKey(logicalKey);
-    });
-
-    button.addEventListener("mouseup", e => {
-      e.preventDefault();
-      releaseKey(logicalKey);
-    });
-
-    button.addEventListener("mouseleave", e => {
-      e.preventDefault();
-      releaseKey(logicalKey);
-    });
-  });
-}
-
-// Démarre la liaison tactile
-bindTouchButtons();
-
-function gameLoop() {
-  keypad.pollGamepads();
-  requestAnimationFrame(gameLoop);
-}
-
-gameLoop();
-
-button.addEventListener('touchcancel', (e) => {
-  e.preventDefault();
-  if (gba && gba.keypad) {
-    gba.keypad.keyboardHandler({ code: key, type: 'keyup' });
-  }
+    window.addEventListener('DOMContentLoaded', () => {
+  const keypad = new GameBoyAdvanceKeypad();
+  keypad.init();
 });
 
+GameBoyAdvanceKeypad.prototype.touchHandler = function(e) {
+  console.log('touchHandler event:', e.type, e.target.getAttribute('data-key'));
+  const keyName = e.target.getAttribute('data-key');
+  if (!keyName) return;
+
+  const keyMap = {
+    'LEFT': this.LEFT,
+    'UP': this.UP,
+    'RIGHT': this.RIGHT,
+    'DOWN': this.DOWN,
+    'START': this.START,
+    'SELECT': this.SELECT,
+    'A': this.A,
+    'B': this.B,
+    'L': this.L,
+    'R': this.R,
+  };
+
+  const toggle = keyMap[keyName];
+  if (toggle === undefined) return;
+
+  let bit = 1 << toggle;
+  let isDown = (e.type === 'touchstart' || e.type === 'mousedown');
+
+  if (isDown) {
+    this.currentDown &= ~bit;
+  } else {
+    this.currentDown |= bit;
+  }
+
+  e.preventDefault();
+};
+
 
   </script>
-
-
 
 </body>
 
