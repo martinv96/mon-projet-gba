@@ -49,31 +49,45 @@
 
       <!-- Boutons tactiles - version Tailwind, intégrée -->
       <div id="touch-controls"
-        class="flex flex-wrap justify-center gap-3 p-4 bg-gray-800 rounded-lg max-w-md mx-auto my-6 shadow-lg">
-        <button data-key="LEFT"
-          class="w-12 h-12 bg-red-600 text-white rounded-full shadow-md hover:bg-red-700 active:scale-95 transition-transform">←</button>
-        <button data-key="UP"
-          class="w-12 h-12 bg-red-600 text-white rounded-full shadow-md hover:bg-red-700 active:scale-95 transition-transform">↑</button>
-        <button data-key="RIGHT"
-          class="w-12 h-12 bg-red-600 text-white rounded-full shadow-md hover:bg-red-700 active:scale-95 transition-transform">→</button>
-        <button data-key="DOWN"
-          class="w-12 h-12 bg-red-600 text-white rounded-full shadow-md hover:bg-red-700 active:scale-95 transition-transform">↓</button>
-        <button data-key="START"
-          class="w-20 h-12 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 active:scale-95 transition-transform">Start</button>
-        <button data-key="SELECT"
-          class="w-20 h-12 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 active:scale-95 transition-transform">Select</button>
-        <button data-key="A"
-          class="w-12 h-12 bg-blue-600 text-white rounded-full shadow-md hover:bg-blue-700 active:scale-95 transition-transform">A</button>
-        <button data-key="B"
-          class="w-12 h-12 bg-blue-600 text-white rounded-full shadow-md hover:bg-blue-700 active:scale-95 transition-transform">B</button>
+        class="grid grid-cols-5 gap-4 p-6 bg-gray-900 rounded-xl text-white max-w-md mx-auto my-8 shadow-lg">
+        <!-- Bouton L -->
         <button data-key="L"
-          class="w-12 h-12 bg-yellow-600 text-white rounded-full shadow-md hover:bg-yellow-700 active:scale-95 transition-transform">L</button>
+          class="col-span-1 bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-lg shadow-md">L</button>
+
+        <!-- Espace vide centré -->
+        <div class="col-span-3"></div>
+
+        <!-- Bouton R -->
         <button data-key="R"
-          class="w-12 h-12 bg-yellow-600 text-white rounded-full shadow-md hover:bg-yellow-700 active:scale-95 transition-transform">R</button>
+          class="col-span-1 bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-lg shadow-md">R</button>
+
+        <!-- Croix directionnelle -->
+        <div class="col-span-2 flex flex-col items-center justify-center">
+          <button data-key="UP" class="w-10 h-10 mb-2 bg-red-600 hover:bg-red-700 rounded-full shadow-md">↑</button>
+          <div class="flex space-x-2">
+            <button data-key="LEFT" class="w-10 h-10 bg-red-600 hover:bg-red-700 rounded-full shadow-md">←</button>
+            <div class="w-10 h-10"></div>
+            <button data-key="RIGHT" class="w-10 h-10 bg-red-600 hover:bg-red-700 rounded-full shadow-md">→</button>
+          </div>
+          <button data-key="DOWN" class="w-10 h-10 mt-2 bg-red-600 hover:bg-red-700 rounded-full shadow-md">↓</button>
+        </div>
+
+        <!-- Espace vide -->
+        <div></div>
+
+        <!-- Boutons A et B -->
+        <div class="col-span-2 flex flex-col items-center justify-center space-y-2">
+          <button data-key="A" class="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-lg rounded-full shadow-md">A</button>
+          <button data-key="B" class="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-lg rounded-full shadow-md">B</button>
+        </div>
+
+        <!-- Boutons Start et Select -->
+        <div class="col-span-5 flex justify-center gap-4 mt-4">
+          <button data-key="START" class="bg-green-600 hover:bg-green-700 py-2 px-6 rounded-lg shadow-md">Start</button>
+          <button data-key="SELECT"
+            class="bg-green-600 hover:bg-green-700 py-2 px-6 rounded-lg shadow-md">Select</button>
+        </div>
       </div>
-
-
-
 
       <div class="text-center mt-4">
         <button id="reset-positions"
@@ -259,8 +273,83 @@
       e.preventDefault();
     };
 
+    // Supposons que keypad est ton instance de GameBoyAdvanceKeypad
+    // par exemple : const keypad = new GameBoyAdvanceKeypad();
+
+    document.getElementById('touch-controls').addEventListener('touchstart', function (e) {
+      if (e.target.tagName === 'BUTTON') {
+        const key = e.target.getAttribute('data-key');
+        if (key && keypad[key] !== undefined) {
+          // Simuler keydown sur la touche correspondante
+          const bit = 1 << keypad[key];
+          keypad.currentDown &= ~bit;
+          e.preventDefault();
+        }
+      }
+    }, { passive: false });
+
+    document.getElementById('touch-controls').addEventListener('touchend', function (e) {
+      if (e.target.tagName === 'BUTTON') {
+        const key = e.target.getAttribute('data-key');
+        if (key && keypad[key] !== undefined) {
+          // Simuler keyup sur la touche correspondante
+          const bit = 1 << keypad[key];
+          keypad.currentDown |= bit;
+          e.preventDefault();
+        }
+      }
+    }, { passive: false });
+
+
 
   </script>
+
+  <script>
+    // Attendre que GBA soit démarré
+    function triggerKey(key, type = 'keydown') {
+      if (!gba || !gba.keypad) return;
+
+      const keyMap = {
+        'UP': 38,
+        'DOWN': 40,
+        'LEFT': 37,
+        'RIGHT': 39,
+        'A': 90,       // Z
+        'B': 88,       // X
+        'L': 65,       // A
+        'R': 83,       // S
+        'START': 13,   // Entrée
+        'SELECT': 16   // Shift
+      };
+
+      const keyCode = keyMap[key];
+      if (!keyCode) return;
+
+      const method = type === 'keydown' ? 'keydown' : 'keyup';
+      const event = new KeyboardEvent(method, { keyCode: keyCode, which: keyCode, bubbles: true });
+      document.dispatchEvent(event);
+    }
+
+    document.querySelectorAll('#touch-controls button').forEach(button => {
+      const key = button.getAttribute('data-key');
+
+      // Pour tactile et souris : mousedown/touchstart = keydown, mouseup/touchend = keyup
+      button.addEventListener('touchstart', e => {
+        e.preventDefault(); // évite le double-clic ou scroll
+        triggerKey(key, 'keydown');
+      });
+
+      button.addEventListener('touchend', e => {
+        e.preventDefault();
+        triggerKey(key, 'keyup');
+      });
+
+      button.addEventListener('mousedown', () => triggerKey(key, 'keydown'));
+      button.addEventListener('mouseup', () => triggerKey(key, 'keyup'));
+      button.addEventListener('mouseleave', () => triggerKey(key, 'keyup'));
+    });
+  </script>
+
 
 </body>
 
