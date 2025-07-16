@@ -40,10 +40,10 @@
 
     <!-- Partie principale : émulateur -->
     <div class="col-span-3">
-      <h1 class="text-3xl font-bold text-center mb-6 text-red-600">Émulateur Pokémon Rubis</h1>
+      <h1 class="text-3xl font-bold text-center mb-6 text-red-600">Émulateur GameBoy Advance</h1>
 
       <div id="canvas-wrapper" class="relative mx-auto w-full max-w-[480px] h-auto" style="aspect-ratio: 3 / 2;">
-        <img id="rom-image" src="public/emulator/rom/pokemonRubis.jpg" alt="Pokémon Rubis"
+        <img id="rom-image" src="public/emulator/rom/images/gba.jpg" alt="Pokémon Rubis"
           class="absolute inset-0 w-full h-full object-contain block" />
         <canvas id="gba-screen" width="480" height="320"
           class="absolute inset-0 border border-gray-500 rounded-lg hidden"
@@ -92,10 +92,32 @@
         </div>
       </div>
 
-      <div class="text-center mt-4">
-        <button id="reset-positions"
-          class="bg-gray-800 hover:bg-black text-white py-2 px-4 rounded shadow">Réinitialiser les positions</button>
-      </div>
+      <div class="mt-4 text-center">
+  <label for="gameSelect" class="mr-2 font-semibold text-gray-700">Choisir un jeu :</label>
+  <select id="gameSelect" class="border rounded p-1 shadow">
+    <option value="" disabled selected hidden>-- Sélectionnez un jeu --</option>
+    <option value="pokemonRubis">Pokémon Rubis</option>
+    <option value="zelda">Zelda : The Minish Cap</option>
+    <option value="pokemonSaphir">Pokémon Saphir</option>
+    <option value="pokemonEmeraude">Pokémon Émeraude</option>
+    <option value="harryPotter2">Harry Potter et la Chambre des Secrets</option>
+    <option value="harryPotter3">Harry Potter et le Prisonnier d’Azkaban</option>
+    <option value="harryPotter4">Harry Potter et la Coupe de Feu</option>
+    <option value="harryPotter5">Harry Potter et l’Ordre des Phoenix</option>
+    <option value="princeOfPersia">Prince de Persie : Le sable du temps</option>
+    <option value="LordOfTheRings1">Le Seigneur des Anneaux : La communauté de l’anneau</option>
+    <option value="LordOfTheRings2">Le Seigneur des Anneaux : Les Deux Tours</option>
+    <option value="LordOfTheRings3">Le Seigneur des Anneaux : Le Retour du Roi</option>
+    <option value="Tarzan">Tarzan : L'Appel de la Jungle</option>
+    <option value="Rayman3">Rayman 3</option>
+    <option value="RaymanAdvance">Rayman Advance</option>
+    <option value="GoldenSun">Golden Sun</option>
+    <option value="MetroidFusion">Metroid Fusion</option>
+    <option value="MetroidZeroMission">Metroid : Zero Mission</option>
+    <!-- Ajoute d’autres jeux ici -->
+  </select>
+</div>
+
 
       <div class="mt-4 text-center">
         <button id="startBtn"
@@ -115,168 +137,20 @@
     </div>
 
     <section class="col-span-3 bg-white p-6 rounded-lg shadow-lg mt-8">
-  <h2 class="text-2xl font-bold mb-6 text-center text-red-600">Soluce Pokémon Rubis GBA</h2>
 
-  <div class="space-y-4" id="accordion">
-    <!-- Introduction -->
-    <div class="border border-gray-300 rounded-md">
-      <button class="w-full text-left px-4 py-3 bg-red-100 hover:bg-red-200 font-semibold text-red-700 rounded-t-md flex justify-between items-center" 
-              aria-expanded="false" aria-controls="sect1" id="head1" onclick="toggleAccordion(event)">
-        <span>Introduction</span>
-        <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" 
-             stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </button>
-      <div id="sect1" class="px-4 py-3 hidden" role="region" aria-labelledby="head1">
-        <p>Bienvenue dans la solution complète de Pokémon Rubis sur Game Boy Advance. Cette soluce vous guide pas à pas du début à la fin du jeu, avec tous les conseils nécessaires.</p>
-      </div>
-    </div>
+  <h2 class="text-2xl font-bold mb-6 text-center text-red-600">Solutions Pokémon</h2>
 
-    <!-- Début du jeu -->
-    <div class="border border-gray-300 rounded-md">
-      <button class="w-full text-left px-4 py-3 bg-red-100 hover:bg-red-200 font-semibold text-red-700 rounded-t-md flex justify-between items-center" 
-              aria-expanded="false" aria-controls="sect2" id="head2" onclick="toggleAccordion(event)">
-        <span>Début du jeu et choix du starter</span>
-        <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" 
-             stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </button>
-      <div id="sect2" class="px-4 py-3 hidden" role="region" aria-labelledby="head2">
-        <p>Au début du jeu, vous sortez de votre maison à <strong>Vieux Bourg</strong>. Après une rencontre avec votre rival, le Professeur Orme vous demandera de choisir votre Pokémon de départ parmi :</p>
-        <ul class="list-disc list-inside">
-          <li><strong>Arcko</strong> (Type Plante) – Rapide et efficace contre les types Eau et Roche</li>
-          <li><strong>Poussifeu</strong> (Type Feu) – Puissant contre les Pokémon Plante, Glace et Insecte</li>
-          <li><strong>Gobou</strong> (Type Eau) – Polyvalent et bon contre les types Feu, Roche et Sol</li>
-        </ul>
-        <p>Explorez un peu la ville, puis dirigez-vous vers <strong>Rocade Ville</strong> pour affronter votre premier rival et poursuivre l’aventure.</p>
-      </div>
-    </div>
+  <!-- Choix de la version -->
+  <div class="mb-6 flex justify-center">
+    <select id="versionSelect" class="border border-gray-300 rounded px-4 py-2">
+      <option value="rubis">Pokémon Rubis / Saphir GBA</option>
+      <option value="emeraude">Pokémon Emeraude GBA</option>
+    </select>
+  </div>
 
-    <!-- Arènes détaillées -->
-    <div class="border border-gray-300 rounded-md">
-      <button class="w-full text-left px-4 py-3 bg-red-100 hover:bg-red-200 font-semibold text-red-700 rounded-t-md flex justify-between items-center" 
-              aria-expanded="false" aria-controls="sect3" id="head3" onclick="toggleAccordion(event)">
-        <span>Les Arènes (détails et stratégies)</span>
-        <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" 
-             stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </button>
-      <div id="sect3" class="px-4 py-3 hidden" role="region" aria-labelledby="head3">
-        <p>Les chefs d’arène sont des défis clés pour avancer et obtenir les badges nécessaires pour la Ligue Pokémon :</p>
-        <ul class="list-disc list-inside space-y-3">
-          <li>
-            <strong>1. Roxanne – Rustboro City (Type Roche)</strong><br>
-            <em>Pokémon principaux :</em> Geodude, Nosepass.<br>
-            <strong>Stratégie :</strong> Utilisez des Pokémon de type Plante ou Eau (ex : Arcko ou Gobou). Attention à ses attaques physiques, préparez des potions.
-          </li>
-          <li>
-            <strong>2. Brawly – Dewford City (Type Combat)</strong><br>
-            <em>Pokémon principaux :</em> Makuhita, Meditite.<br>
-            <strong>Stratégie :</strong> Attaques de type Vol (ex : Roucool), Psy ou Fée sont efficaces. Préparez vos Pokémon pour encaisser les coups.
-          </li>
-          <li>
-            <strong>3. Wattson – Mauville City (Type Électrique)</strong><br>
-            <em>Pokémon principaux :</em> Magnemite, Voltorb, Magneton.<br>
-            <strong>Stratégie :</strong> Pokémon de type Sol (ex : Nosferalto) sont immunisés à ses attaques. Méfiez-vous de ses attaques statuts.
-          </li>
-          <li>
-            <strong>4. Flannery – Lavaridge Town (Type Feu)</strong><br>
-            <em>Pokémon principaux :</em> Numel, Torkoal.<br>
-            <strong>Stratégie :</strong> Attaques Eau, Sol, Roche sont très efficaces. Équipez vos Pokémon avec des CT Surf ou Force si possible.
-          </li>
-          <li>
-            <strong>5. Norman – Petalburg City (Type Normal)</strong><br>
-            <em>Pokémon principaux :</em> Slaking, Vigoroth, Linoone.<br>
-            <strong>Stratégie :</strong> Attaques Combat (ex : Machoc) sont recommandées. Attention à Slaking qui a une puissante attaque.
-          </li>
-          <li>
-            <strong>6. Winona – Fortree City (Type Vol)</strong><br>
-            <em>Pokémon principaux :</em> Swellow, Pelipper, Skarmory.<br>
-            <strong>Stratégie :</strong> Attaques Roche, Électrique ou Glace. Les Pokémon Plante sont vulnérables.
-          </li>
-          <li>
-            <strong>7. Tate & Liza – Fallarbor Town (Type Psy)</strong><br>
-            <em>Pokémon principaux :</em> Lunatone, Solrock.<br>
-            <strong>Stratégie :</strong> Utilisez des Pokémon avec attaques Insecte, Spectre ou Ténèbres. Méfiez-vous de leurs attaques de statut.
-          </li>
-          <li>
-            <strong>8. Juan – Pacifidlog Town (Type Eau)</strong><br>
-            <em>Pokémon principaux :</em> Kingdra.<br>
-            <strong>Stratégie :</strong> Attaques Plante ou Électrique sont très efficaces. Soyez préparé à une longue bataille.
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Cheminement principal -->
-    <div class="border border-gray-300 rounded-md">
-      <button class="w-full text-left px-4 py-3 bg-red-100 hover:bg-red-200 font-semibold text-red-700 rounded-t-md flex justify-between items-center" 
-              aria-expanded="false" aria-controls="sect4" id="head4" onclick="toggleAccordion(event)">
-        <span>Cheminement principal et conseils</span>
-        <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" 
-             stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </button>
-      <div id="sect4" class="px-4 py-3 hidden" role="region" aria-labelledby="head4">
-        <p>Après avoir battu les premières arènes, explorez la région de Hoenn :</p>
-        <ol class="list-decimal list-inside space-y-1">
-          <li>Visitez le <strong>Mont Chimnée</strong> pour progresser vers Lavaridge.</li>
-          <li>Collectez les CS (coupe, surf, force…) pour accéder à de nouvelles zones.</li>
-          <li>Affrontez le <strong>Team Magma</strong> qui cherche à manipuler le volcan.</li>
-          <li>Capturez les Pokémon légendaires <strong>Groudon</strong> ou <strong>Kyogre</strong> selon votre version.</li>
-          <li>Préparez-vous pour le Conseil des 4 et la Ligue Pokémon à <strong>Clémenti-Ville</strong>.</li>
-        </ol>
-
-        <h4 class="mt-4 font-semibold">Conseils</h4>
-        <ul class="list-disc list-inside">
-          <li>Entraînez une équipe équilibrée de niveau 40+ avant le Conseil des 4.</li>
-          <li>Utilisez des objets comme les potions, rappels, et baies.</li>
-          <li>Ne négligez pas l'exploration pour trouver des CT et objets rares.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Routes du jeu -->
-    <div class="border border-gray-300 rounded-md">
-      <button class="w-full text-left px-4 py-3 bg-red-100 hover:bg-red-200 font-semibold text-red-700 rounded-t-md flex justify-between items-center" 
-              aria-expanded="false" aria-controls="sect5" id="head5" onclick="toggleAccordion(event)">
-        <span>Les routes principales</span>
-        <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" 
-             stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </button>
-      <div id="sect5" class="px-4 py-3 hidden" role="region" aria-labelledby="head5">
-        <p>Voici un résumé des routes principales pour avancer dans Hoenn :</p>
-        <ul class="list-disc list-inside space-y-2">
-          <li><strong>Route 101</strong> – Relie Vieux Bourg à Rustboro City, idéale pour capturer les premiers Pokémon sauvages comme Poussifeu.</li>
-          <li><strong>Route 102</strong> – Traverse la zone entre Rustboro et la Route 103, utile pour l'entraînement et les objets cachés.</li>
-          <li><strong>Route 103</strong> – Connexion vers la Route 104, avec plusieurs dresseurs à affronter.</li>
-          <li><strong>Route 104</strong> – Voie vers Mérouville, avec accès au premier surf.</li>
-          <li><strong>Route 105</strong> – Route aquatique entre Mérouville et la Route 106, peuplée de Pokémon eau.</li>
-          <li><strong>Route 106</strong> – Relie Mérouville à Rusturf Tunnel, avec plusieurs herbes hautes pour attraper des Pokémon.</li>
-          <li><strong>Route 110</strong> – Accès à la forêt de Clémenti-Ville, parfait pour entraîner les Pokémon avant la deuxième arène.</li>
-          <li><strong>Route 111</strong> – Menant à la ville d’Argenta, avec un désert proche.</li>
-          <li><strong>Route 113</strong> – Connexion entre Argenta et le Mont Sélénite, passage obligatoire pour la suite.</li>
-          <li><strong>Route 118</strong> – Longue route d’eau entre Argenta et Lavaridge, utilisée pour surfer et attraper des Pokémon rares.</li>
-          <li><strong>Route 119</strong> – Traverse la zone forestière et mène à Fort-Vanitas.</li>
-          <li><strong>Route 120</strong> – Chemin vers le Mont Chimnée et la zone de Lavaridge.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Astuces et objets clés -->
-    <div class="border border-gray-300 rounded-md">
-      <button class="w-full text-left px-4 py-3 bg-red-100 hover:bg-red-200 font-semibold text-red-700 rounded-t-md flex justify-between items-center" 
-              aria-expanded="false" aria-controls="sect6" id="head6" onclick="toggleAccordion(event)">
-        <span>Astuces et objets clés</span>
-        <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" 
-             stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </button>
-      <div id="sect6" class="px-4 py-3 hidden" role="region" aria-labelledby="head6">
-        <ul class="list-disc list-inside">
-          <li><strong>CT Surf :</strong> Obtenue tôt, elle est indispensable pour accéder à de nombreuses zones aquatiques.</li>
-          <li><strong>Baie Oran :</strong> Récupère de la vie automatiquement, très utile en combat.</li>
-          <li><strong>Pokémon Repousse :</strong> Pour éviter les rencontres sauvages quand tu veux explorer.</li>
-          <li><strong>Pokémon équilibrés :</strong> Pense à varier les types dans ton équipe pour couvrir toutes les faiblesses.</li>
-          <li><strong>Objets rares :</strong> Cherche les objets cachés sur les routes et dans les grottes.</li>
-        </ul>
-      </div>
-    </div>
+  <!-- Zone accordéon dynamique -->
+  <div id="accordionContainer">
+    <!-- Le contenu de la soluce sera injecté ici via JS -->
   </div>
 </section>
   </div>
@@ -291,237 +165,37 @@
 
 
   <!-- JS général -->
-  <script>
-    // Menu mobile toggle
-    document.getElementById('menu-toggle').addEventListener('click', () => {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
-    });
-  </script>
-
-  <!-- Scripts émulateur -->
-  <script src="public/emulator/gbajs/js/gba.js"></script>
-  <script src="public/emulator/gbajs/js/arm.js"></script>
-  <script src="public/emulator/gbajs/js/audio.js"></script>
-  <script src="public/emulator/gbajs/js/core.js"></script>
-  <script src="public/emulator/gbajs/js/gpio.js"></script>
-  <script src="public/emulator/gbajs/js/io.js"></script>
-  <script src="public/emulator/gbajs/js/irq.js"></script>
-  <script src="public/emulator/gbajs/js/keypad.js"></script>
-  <script src="public/emulator/gbajs/js/mmu.js"></script>
-  <script src="public/emulator/gbajs/js/savedata.js"></script>
-  <script src="public/emulator/gbajs/js/sio.js"></script>
-  <script src="public/emulator/gbajs/js/thumb.js"></script>
-  <script src="public/emulator/gbajs/js/video.js"></script>
-  <script src="public/emulator/gbajs/js/util.js"></script>
-  <script src="public/emulator/gbajs/js/video/proxy.js"></script>
-  <script src="public/emulator/gbajs/js/video/software.js"></script>
-  <script src="public/emulator/gbajs/resources/xhr.js"></script>
-  <script src="public/emulator/gbajs/resources/console.js"></script>
-
-  <script>
-    const canvas = document.getElementById('gba-screen');
-    const startBtn = document.getElementById('startBtn');
-    const zoomSelect = document.getElementById('zoomSelect');
-    const romImage = document.getElementById('rom-image');
-    let gba = null;
-
-    const baseWidth = 240;
-    const baseHeight = 160;
-
-    function applyZoom(factor) {
-      const containerWidth = document.getElementById('canvas-wrapper').clientWidth;
-      let newWidth = baseWidth * factor;
-      let newHeight = baseHeight * factor;
-
-      if (newWidth > containerWidth) {
-        const scaleDownFactor = containerWidth / newWidth;
-        newWidth = containerWidth;
-        newHeight = baseHeight * factor * scaleDownFactor;
-      }
-
-      canvas.width = newWidth;
-      canvas.height = newHeight;
-      canvas.style.width = `${newWidth}px`;
-      canvas.style.height = `${newHeight}px`;
-
-      const ctx = canvas.getContext('2d');
-      ctx.imageSmoothingEnabled = false;
-      canvas.style.imageRendering = "pixelated";
-      canvas.style.imageRendering = "crisp-edges";
-    }
-
-    applyZoom(parseInt(zoomSelect.value));
-    zoomSelect.addEventListener('change', () => applyZoom(parseInt(zoomSelect.value)));
-
-    async function loadBinary(path) {
-      const response = await fetch(path);
-      if (!response.ok) throw new Error(`Erreur : ${response.statusText}`);
-      return await response.arrayBuffer();
-    }
-
-    startBtn.addEventListener('click', async () => {
-      if (gba) return;
-
-      try {
-        gba = new GameBoyAdvance();
-        gba.setLogger((level, message) => console.log('GBA log:', level, message));
-        gba.setCanvas(canvas);
-
-        startBtn.disabled = true;
-        startBtn.textContent = 'Chargement en cours...';
-
-        const biosBuffer = await loadBinary('public/emulator/rom/bios.bin');
-        const romBuffer = await loadBinary('public/emulator/rom/PokemonRubis.gba');
-
-        gba.setBios(biosBuffer, true);
-        gba.setRom(romBuffer);
-        gba.runStable();
-
-        romImage.style.display = 'none';
-        canvas.classList.remove('hidden');
-        startBtn.textContent = 'Émulateur lancé';
-      } catch (e) {
-        console.error(e);
-        alert('Erreur : ' + e.message);
-        gba = null;
-        startBtn.textContent = 'Lancer l’émulateur';
-        startBtn.disabled = false;
-      }
-    });
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const keypad = new GameBoyAdvanceKeypad();
-      keypad.init();
-    });
-
-    GameBoyAdvanceKeypad.prototype.touchHandler = function (e) {
-      console.log('touchHandler event:', e.type, e.target.getAttribute('data-key'));
-      const keyName = e.target.getAttribute('data-key');
-      if (!keyName) return;
-
-      const keyMap = {
-        'LEFT': this.LEFT,
-        'UP': this.UP,
-        'RIGHT': this.RIGHT,
-        'DOWN': this.DOWN,
-        'START': this.START,
-        'SELECT': this.SELECT,
-        'A': this.A,
-        'B': this.B,
-        'L': this.L,
-        'R': this.R,
-      };
-
-      const toggle = keyMap[keyName];
-      if (toggle === undefined) return;
-
-      let bit = 1 << toggle;
-      let isDown = (e.type === 'touchstart' || e.type === 'mousedown');
-
-      if (isDown) {
-        this.currentDown &= ~bit;
-      } else {
-        this.currentDown |= bit;
-      }
-
-      e.preventDefault();
-    };
-
-    // Supposons que keypad est ton instance de GameBoyAdvanceKeypad
-    // par exemple : const keypad = new GameBoyAdvanceKeypad();
-
-    document.getElementById('touch-controls').addEventListener('touchstart', function (e) {
-      if (e.target.tagName === 'BUTTON') {
-        const key = e.target.getAttribute('data-key');
-        if (key && keypad[key] !== undefined) {
-          // Simuler keydown sur la touche correspondante
-          const bit = 1 << keypad[key];
-          keypad.currentDown &= ~bit;
-          e.preventDefault();
-        }
-      }
-    }, { passive: false });
-
-    document.getElementById('touch-controls').addEventListener('touchend', function (e) {
-      if (e.target.tagName === 'BUTTON') {
-        const key = e.target.getAttribute('data-key');
-        if (key && keypad[key] !== undefined) {
-          // Simuler keyup sur la touche correspondante
-          const bit = 1 << keypad[key];
-          keypad.currentDown |= bit;
-          e.preventDefault();
-        }
-      }
-    }, { passive: false });
-
-
-
-  </script>
-
-  <script>
-    // Attendre que GBA soit démarré
-    function triggerKey(key, type = 'keydown') {
-      if (!gba || !gba.keypad) return;
-
-      const keyMap = {
-        'UP': 38,
-        'DOWN': 40,
-        'LEFT': 37,
-        'RIGHT': 39,
-        'A': 90,       // Z
-        'B': 88,       // X
-        'L': 65,       // A
-        'R': 83,       // S
-        'START': 13,   // Entrée
-        'SELECT': 16   // Shift
-      };
-
-      const keyCode = keyMap[key];
-      if (!keyCode) return;
-
-      const method = type === 'keydown' ? 'keydown' : 'keyup';
-      const event = new KeyboardEvent(method, { keyCode: keyCode, which: keyCode, bubbles: true });
-      document.dispatchEvent(event);
-    }
-
-    document.querySelectorAll('#touch-controls button').forEach(button => {
-      const key = button.getAttribute('data-key');
-
-      // Pour tactile et souris : mousedown/touchstart = keydown, mouseup/touchend = keyup
-      button.addEventListener('touchstart', e => {
-        e.preventDefault(); // évite le double-clic ou scroll
-        triggerKey(key, 'keydown');
-      });
-
-      button.addEventListener('touchend', e => {
-        e.preventDefault();
-        triggerKey(key, 'keyup');
-      });
-
-      button.addEventListener('mousedown', () => triggerKey(key, 'keydown'));
-      button.addEventListener('mouseup', () => triggerKey(key, 'keyup'));
-      button.addEventListener('mouseleave', () => triggerKey(key, 'keyup'));
-    });
-  </script>
+  <!-- Menu mobile -->
 <script>
-  function toggleAccordion(event) {
-    const btn = event.currentTarget;
-    const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-    const content = document.getElementById(btn.getAttribute('aria-controls'));
-    const icon = btn.querySelector('svg');
-
-    if (isExpanded) {
-      btn.setAttribute('aria-expanded', 'false');
-      content.classList.add('hidden');
-      icon.classList.remove('rotate-180');
-    } else {
-      btn.setAttribute('aria-expanded', 'true');
-      content.classList.remove('hidden');
-      icon.classList.add('rotate-180');
-    }
-  }
+  document.getElementById('menu-toggle').addEventListener('click', () => {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+  });
 </script>
+
+<!-- Scripts émulateur -->
+<script src="public/emulator/gbajs/js/gba.js"></script>
+<script src="public/emulator/gbajs/js/arm.js"></script>
+<script src="public/emulator/gbajs/js/audio.js"></script>
+<script src="public/emulator/gbajs/js/core.js"></script>
+<script src="public/emulator/gbajs/js/gpio.js"></script>
+<script src="public/emulator/gbajs/js/io.js"></script>
+<script src="public/emulator/gbajs/js/irq.js"></script>
+<script src="public/emulator/gbajs/js/keypad.js"></script>
+<script src="public/emulator/gbajs/js/mmu.js"></script>
+<script src="public/emulator/gbajs/js/savedata.js"></script>
+<script src="public/emulator/gbajs/js/sio.js"></script>
+<script src="public/emulator/gbajs/js/thumb.js"></script>
+<script src="public/emulator/gbajs/js/video.js"></script>
+<script src="public/emulator/gbajs/js/util.js"></script>
+<script src="public/emulator/gbajs/js/video/proxy.js"></script>
+<script src="public/emulator/gbajs/js/video/software.js"></script>
+<script src="public/emulator/gbajs/resources/xhr.js"></script>
+<script src="public/emulator/gbajs/resources/console.js"></script>
+
+<script src="js/emulator.js" defer></script>
+
+<script src="js/soluce.js" defer></script>
 
 </body>
 
