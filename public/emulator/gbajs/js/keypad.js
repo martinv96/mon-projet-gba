@@ -210,11 +210,10 @@ GameBoyAdvanceKeypad.prototype.registerTouchHandlers = function() {
   }
   console.log('Registering touch handlers');
   controls.querySelectorAll('button').forEach(button => {
-    button.addEventListener('touchstart', this.touchHandler.bind(this), {passive:false});
-button.addEventListener('touchend', this.touchHandler.bind(this), {passive:false});
-button.addEventListener('touchcancel', (e) => console.log('touchcancel', e), {passive:false});
-button.addEventListener('touchmove', (e) => console.log('touchmove', e), {passive:false});
-
+    button.addEventListener('touchstart', this.touchHandler.bind(this));
+    button.addEventListener('touchend', this.touchHandler.bind(this));
+    button.addEventListener('mousedown', this.touchHandler.bind(this));
+    button.addEventListener('mouseup', this.touchHandler.bind(this));
   });
 };
 
