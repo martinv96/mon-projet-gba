@@ -21,9 +21,7 @@
         <a href="apiPokemon.html" class="text-gray-700 hover:text-gray-600">API Pokémon</a>
       </nav>
 
-      <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none" aria-label="Toggle menu">
-        ☰
-      </button>
+      <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none" aria-label="Toggle menu">☰</button>
     </div>
 
     <!-- Menu mobile -->
@@ -34,12 +32,16 @@
       <a href="apiPokemon.html" class="block text-gray-700 hover:text-gray-600">API Pokémon</a>
     </div>
   </header>
-  <div class="max-w-6xl mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-    <!-- Partie principale : émulateur -->
-    <div class="col-span-2">
-      <h1 class="text-3xl font-bold text-center mb-6 text-red-600">Émulateur Pokémon Rouge Feu</h1>
 
-      <div id="canvas-wrapper" class="relative mx-auto w-full max-w-[480px] h-auto" style="aspect-ratio: 3 / 2;">
+  <!-- Contenu principal -->
+ <main class="max-w-6xl mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-8 flex-grow">
+
+    <!-- Émulateur -->
+    <section class="md:col-span-2">
+      <h1 class="text-3xl font-bold text-center mb-6 text-red-600">Émulateur Pokémon Rubis</h1>
+
+      <!-- Conteneur canvas, responsive -->
+      <div id="canvas-wrapper" class="relative mx-auto w-full max-w-md" style="aspect-ratio: 3 / 2;">
         <img id="rom-image" src="public/emulator/rom/pokemonRubis.jpg" alt="Pokémon Rubis"
           class="absolute inset-0 w-full h-full object-contain block" />
         <canvas id="gba-screen" width="480" height="320"
@@ -47,89 +49,241 @@
           style="image-rendering: pixelated; image-rendering: crisp-edges;"></canvas>
       </div>
 
-      <!-- Boutons tactiles - version Tailwind, intégrée -->
+      <!-- Contrôles tactiles -->
       <div id="touch-controls"
-        class="grid grid-cols-5 gap-4 p-6 bg-gray-900 rounded-xl text-white max-w-md mx-auto my-8 shadow-lg">
-        <!-- Bouton L -->
-        <button data-key="L"
-          class="col-span-1 bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-lg shadow-md">L</button>
+        class="grid grid-cols-5 gap-3 p-4 bg-gray-900 rounded-xl text-white max-w-md mx-auto my-8 shadow-lg">
 
-        <!-- Espace vide centré -->
+        <button data-key="L"
+          class="col-span-1 bg-yellow-600 hover:bg-yellow-700 font-bold py-2 px-3 rounded-lg shadow-md text-sm sm:text-base">L</button>
+
         <div class="col-span-3"></div>
 
-        <!-- Bouton R -->
         <button data-key="R"
-          class="col-span-1 bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-lg shadow-md">R</button>
+          class="col-span-1 bg-yellow-600 hover:bg-yellow-700 font-bold py-2 px-3 rounded-lg shadow-md text-sm sm:text-base">R</button>
 
         <!-- Croix directionnelle -->
         <div class="col-span-2 flex flex-col items-center justify-center">
-          <button data-key="UP" class="w-10 h-10 mb-2 bg-red-600 hover:bg-red-700 rounded-full shadow-md">↑</button>
-          <div class="flex space-x-2">
-            <button data-key="LEFT" class="w-10 h-10 bg-red-600 hover:bg-red-700 rounded-full shadow-md">←</button>
-            <div class="w-10 h-10"></div>
-            <button data-key="RIGHT" class="w-10 h-10 bg-red-600 hover:bg-red-700 rounded-full shadow-md">→</button>
+          <button data-key="UP" class="w-8 h-8 mb-1 sm:w-10 sm:h-10 bg-red-600 hover:bg-red-700 rounded-full shadow-md">↑</button>
+          <div class="flex space-x-1 sm:space-x-2">
+            <button data-key="LEFT" class="w-8 h-8 bg-red-600 hover:bg-red-700 rounded-full shadow-md">←</button>
+            <div class="w-8 h-8 sm:w-10 sm:h-10"></div>
+            <button data-key="RIGHT" class="w-8 h-8 bg-red-600 hover:bg-red-700 rounded-full shadow-md">→</button>
           </div>
-          <button data-key="DOWN" class="w-10 h-10 mt-2 bg-red-600 hover:bg-red-700 rounded-full shadow-md">↓</button>
+          <button data-key="DOWN" class="w-8 h-8 mt-1 sm:w-10 sm:h-10 bg-red-600 hover:bg-red-700 rounded-full shadow-md">↓</button>
         </div>
 
-        <!-- Espace vide -->
         <div></div>
 
         <!-- Boutons A et B -->
-        <div class="col-span-2 flex flex-col items-center justify-center space-y-2">
-          <button data-key="A" class="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-lg rounded-full shadow-md">A</button>
-          <button data-key="B" class="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-lg rounded-full shadow-md">B</button>
+        <div class="col-span-2 flex flex-col items-center justify-center space-y-1 sm:space-y-2">
+          <button data-key="A" class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 hover:bg-blue-700 text-lg rounded-full shadow-md">A</button>
+          <button data-key="B" class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 hover:bg-blue-700 text-lg rounded-full shadow-md">B</button>
         </div>
 
         <!-- Boutons Start et Select -->
-        <div class="col-span-5 flex justify-center gap-4 mt-4">
-          <button data-key="START" class="bg-green-600 hover:bg-green-700 py-2 px-6 rounded-lg shadow-md">Start</button>
+        <div class="col-span-5 flex justify-center gap-3 mt-3 sm:mt-4">
+          <button data-key="START"
+            class="bg-green-600 hover:bg-green-700 py-2 px-5 rounded-lg shadow-md text-sm sm:text-base">Start</button>
           <button data-key="SELECT"
-            class="bg-green-600 hover:bg-green-700 py-2 px-6 rounded-lg shadow-md">Select</button>
+            class="bg-green-600 hover:bg-green-700 py-2 px-5 rounded-lg shadow-md text-sm sm:text-base">Select</button>
         </div>
       </div>
 
-      <div class="text-center mt-4">
+      <!-- Boutons zoom et lancement -->
+      <div class="text-center mt-4 space-y-4 max-w-md mx-auto">
+        <button id="startBtn"
+          class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg shadow">Lancer l’émulateur</button>
+
         <button id="reset-positions"
           class="bg-gray-800 hover:bg-black text-white py-2 px-4 rounded shadow">Réinitialiser les positions</button>
-      </div>
 
-      <div class="mt-4 text-center">
-        <button id="startBtn"
-          class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg shadow">Lancer
-          l’émulateur</button>
+        <div>
+          <label for="zoomSelect" class="mr-2 font-semibold text-gray-700">Zoom :</label>
+          <select id="zoomSelect" class="border rounded p-1 shadow">
+            <option value="1">x1</option>
+            <option value="2" selected>x2</option>
+          </select>
+        </div>
       </div>
+    </section>
 
-      <div class="mt-2 text-center">
-        <label for="zoomSelect" class="mr-2 font-semibold text-gray-700">Zoom :</label>
-        <select id="zoomSelect" class="border rounded p-1 shadow">
-          <option value="1">x1</option>
-          <option value="2" selected>x2</option>
-          <option value="3">x3</option>
-          <option value="4">x4</option>
-        </select>
+    <!-- Nouvelle section soluce, pleine largeur -->
+  <section class="col-span-3 bg-white p-6 rounded-lg shadow-lg mt-8">
+  <h2 class="text-2xl font-bold mb-6 text-center text-red-600">Soluce Pokémon Rubis GBA</h2>
+
+  <div class="space-y-4" id="accordion">
+    <!-- Introduction -->
+    <div class="border border-gray-300 rounded-md">
+      <button class="w-full text-left px-4 py-3 bg-red-100 hover:bg-red-200 font-semibold text-red-700 rounded-t-md flex justify-between items-center" 
+              aria-expanded="false" aria-controls="sect1" id="head1" onclick="toggleAccordion(event)">
+        <span>Introduction</span>
+        <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" 
+             stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+      <div id="sect1" class="px-4 py-3 hidden" role="region" aria-labelledby="head1">
+        <p>Bienvenue dans la solution complète de Pokémon Rubis sur Game Boy Advance. Cette soluce vous guide pas à pas du début à la fin du jeu, avec tous les conseils nécessaires.</p>
       </div>
     </div>
 
-    <!-- Partie droite : commandes -->
-    <div class="bg-gray-100 p-4 rounded-lg shadow-lg">
-      <h2 class="text-xl font-semibold text-center mb-4">Commandes</h2>
-      <ul class="space-y-2 text-gray-700 text-sm md:text-base">
-        <li><strong>↑ ↓ ← →</strong> : Déplacements</li>
-        <li><strong>Z</strong> : A (valider)</li>
-        <li><strong>X</strong> : B (annuler)</li>
-        <li><strong>Entrée</strong> : Start</li>
-        <li><strong>Shift</strong> : Select</li>
-        <li><strong>A</strong> : L</li>
-        <li><strong>S</strong> : R</li>
-      </ul>
+    <!-- Début du jeu -->
+    <div class="border border-gray-300 rounded-md">
+      <button class="w-full text-left px-4 py-3 bg-red-100 hover:bg-red-200 font-semibold text-red-700 rounded-t-md flex justify-between items-center" 
+              aria-expanded="false" aria-controls="sect2" id="head2" onclick="toggleAccordion(event)">
+        <span>Début du jeu et choix du starter</span>
+        <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" 
+             stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+      <div id="sect2" class="px-4 py-3 hidden" role="region" aria-labelledby="head2">
+        <p>Au début du jeu, vous sortez de votre maison à <strong>Vieux Bourg</strong>. Après une rencontre avec votre rival, le Professeur Orme vous demandera de choisir votre Pokémon de départ parmi :</p>
+        <ul class="list-disc list-inside">
+          <li><strong>Arcko</strong> (Type Plante) – Rapide et efficace contre les types Eau et Roche</li>
+          <li><strong>Poussifeu</strong> (Type Feu) – Puissant contre les Pokémon Plante, Glace et Insecte</li>
+          <li><strong>Gobou</strong> (Type Eau) – Polyvalent et bon contre les types Feu, Roche et Sol</li>
+        </ul>
+        <p>Explorez un peu la ville, puis dirigez-vous vers <strong>Rocade Ville</strong> pour affronter votre premier rival et poursuivre l’aventure.</p>
+      </div>
+    </div>
+
+    <!-- Arènes détaillées -->
+    <div class="border border-gray-300 rounded-md">
+      <button class="w-full text-left px-4 py-3 bg-red-100 hover:bg-red-200 font-semibold text-red-700 rounded-t-md flex justify-between items-center" 
+              aria-expanded="false" aria-controls="sect3" id="head3" onclick="toggleAccordion(event)">
+        <span>Les Arènes (détails et stratégies)</span>
+        <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" 
+             stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+      <div id="sect3" class="px-4 py-3 hidden" role="region" aria-labelledby="head3">
+        <p>Les chefs d’arène sont des défis clés pour avancer et obtenir les badges nécessaires pour la Ligue Pokémon :</p>
+        <ul class="list-disc list-inside space-y-3">
+          <li>
+            <strong>1. Roxanne – Rustboro City (Type Roche)</strong><br>
+            <em>Pokémon principaux :</em> Geodude, Nosepass.<br>
+            <strong>Stratégie :</strong> Utilisez des Pokémon de type Plante ou Eau (ex : Arcko ou Gobou). Attention à ses attaques physiques, préparez des potions.
+          </li>
+          <li>
+            <strong>2. Brawly – Dewford City (Type Combat)</strong><br>
+            <em>Pokémon principaux :</em> Makuhita, Meditite.<br>
+            <strong>Stratégie :</strong> Attaques de type Vol (ex : Roucool), Psy ou Fée sont efficaces. Préparez vos Pokémon pour encaisser les coups.
+          </li>
+          <li>
+            <strong>3. Wattson – Mauville City (Type Électrique)</strong><br>
+            <em>Pokémon principaux :</em> Magnemite, Voltorb, Magneton.<br>
+            <strong>Stratégie :</strong> Pokémon de type Sol (ex : Nosferalto) sont immunisés à ses attaques. Méfiez-vous de ses attaques statuts.
+          </li>
+          <li>
+            <strong>4. Flannery – Lavaridge Town (Type Feu)</strong><br>
+            <em>Pokémon principaux :</em> Numel, Torkoal.<br>
+            <strong>Stratégie :</strong> Attaques Eau, Sol, Roche sont très efficaces. Équipez vos Pokémon avec des CT Surf ou Force si possible.
+          </li>
+          <li>
+            <strong>5. Norman – Petalburg City (Type Normal)</strong><br>
+            <em>Pokémon principaux :</em> Slaking, Vigoroth, Linoone.<br>
+            <strong>Stratégie :</strong> Attaques Combat (ex : Machoc) sont recommandées. Attention à Slaking qui a une puissante attaque.
+          </li>
+          <li>
+            <strong>6. Winona – Fortree City (Type Vol)</strong><br>
+            <em>Pokémon principaux :</em> Swellow, Pelipper, Skarmory.<br>
+            <strong>Stratégie :</strong> Attaques Roche, Électrique ou Glace. Les Pokémon Plante sont vulnérables.
+          </li>
+          <li>
+            <strong>7. Tate & Liza – Fallarbor Town (Type Psy)</strong><br>
+            <em>Pokémon principaux :</em> Lunatone, Solrock.<br>
+            <strong>Stratégie :</strong> Utilisez des Pokémon avec attaques Insecte, Spectre ou Ténèbres. Méfiez-vous de leurs attaques de statut.
+          </li>
+          <li>
+            <strong>8. Juan – Pacifidlog Town (Type Eau)</strong><br>
+            <em>Pokémon principaux :</em> Kingdra.<br>
+            <strong>Stratégie :</strong> Attaques Plante ou Électrique sont très efficaces. Soyez préparé à une longue bataille.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Cheminement principal -->
+    <div class="border border-gray-300 rounded-md">
+      <button class="w-full text-left px-4 py-3 bg-red-100 hover:bg-red-200 font-semibold text-red-700 rounded-t-md flex justify-between items-center" 
+              aria-expanded="false" aria-controls="sect4" id="head4" onclick="toggleAccordion(event)">
+        <span>Cheminement principal et conseils</span>
+        <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" 
+             stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+      <div id="sect4" class="px-4 py-3 hidden" role="region" aria-labelledby="head4">
+        <p>Après avoir battu les premières arènes, explorez la région de Hoenn :</p>
+        <ol class="list-decimal list-inside space-y-1">
+          <li>Visitez le <strong>Mont Chimnée</strong> pour progresser vers Lavaridge.</li>
+          <li>Collectez les CS (coupe, surf, force…) pour accéder à de nouvelles zones.</li>
+          <li>Affrontez le <strong>Team Magma</strong> qui cherche à manipuler le volcan.</li>
+          <li>Capturez les Pokémon légendaires <strong>Groudon</strong> ou <strong>Kyogre</strong> selon votre version.</li>
+          <li>Préparez-vous pour le Conseil des 4 et la Ligue Pokémon à <strong>Clémenti-Ville</strong>.</li>
+        </ol>
+
+        <h4 class="mt-4 font-semibold">Conseils</h4>
+        <ul class="list-disc list-inside">
+          <li>Entraînez une équipe équilibrée de niveau 40+ avant le Conseil des 4.</li>
+          <li>Utilisez des objets comme les potions, rappels, et baies.</li>
+          <li>Ne négligez pas l'exploration pour trouver des CT et objets rares.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Routes du jeu -->
+    <div class="border border-gray-300 rounded-md">
+      <button class="w-full text-left px-4 py-3 bg-red-100 hover:bg-red-200 font-semibold text-red-700 rounded-t-md flex justify-between items-center" 
+              aria-expanded="false" aria-controls="sect5" id="head5" onclick="toggleAccordion(event)">
+        <span>Les routes principales</span>
+        <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" 
+             stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+      <div id="sect5" class="px-4 py-3 hidden" role="region" aria-labelledby="head5">
+        <p>Voici un résumé des routes principales pour avancer dans Hoenn :</p>
+        <ul class="list-disc list-inside space-y-2">
+          <li><strong>Route 101</strong> – Relie Vieux Bourg à Rustboro City, idéale pour capturer les premiers Pokémon sauvages comme Poussifeu.</li>
+          <li><strong>Route 102</strong> – Traverse la zone entre Rustboro et la Route 103, utile pour l'entraînement et les objets cachés.</li>
+          <li><strong>Route 103</strong> – Connexion vers la Route 104, avec plusieurs dresseurs à affronter.</li>
+          <li><strong>Route 104</strong> – Voie vers Mérouville, avec accès au premier surf.</li>
+          <li><strong>Route 105</strong> – Route aquatique entre Mérouville et la Route 106, peuplée de Pokémon eau.</li>
+          <li><strong>Route 106</strong> – Relie Mérouville à Rusturf Tunnel, avec plusieurs herbes hautes pour attraper des Pokémon.</li>
+          <li><strong>Route 110</strong> – Accès à la forêt de Clémenti-Ville, parfait pour entraîner les Pokémon avant la deuxième arène.</li>
+          <li><strong>Route 111</strong> – Menant à la ville d’Argenta, avec un désert proche.</li>
+          <li><strong>Route 113</strong> – Connexion entre Argenta et le Mont Sélénite, passage obligatoire pour la suite.</li>
+          <li><strong>Route 118</strong> – Longue route d’eau entre Argenta et Lavaridge, utilisée pour surfer et attraper des Pokémon rares.</li>
+          <li><strong>Route 119</strong> – Traverse la zone forestière et mène à Fort-Vanitas.</li>
+          <li><strong>Route 120</strong> – Chemin vers le Mont Chimnée et la zone de Lavaridge.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Astuces et objets clés -->
+    <div class="border border-gray-300 rounded-md">
+      <button class="w-full text-left px-4 py-3 bg-red-100 hover:bg-red-200 font-semibold text-red-700 rounded-t-md flex justify-between items-center" 
+              aria-expanded="false" aria-controls="sect6" id="head6" onclick="toggleAccordion(event)">
+        <span>Astuces et objets clés</span>
+        <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" 
+             stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+      <div id="sect6" class="px-4 py-3 hidden" role="region" aria-labelledby="head6">
+        <ul class="list-disc list-inside">
+          <li><strong>CT Surf :</strong> Obtenue tôt, elle est indispensable pour accéder à de nombreuses zones aquatiques.</li>
+          <li><strong>Baie Oran :</strong> Récupère de la vie automatiquement, très utile en combat.</li>
+          <li><strong>Pokémon Repousse :</strong> Pour éviter les rencontres sauvages quand tu veux explorer.</li>
+          <li><strong>Pokémon équilibrés :</strong> Pense à varier les types dans ton équipe pour couvrir toutes les faiblesses.</li>
+          <li><strong>Objets rares :</strong> Cherche les objets cachés sur les routes et dans les grottes.</li>
+        </ul>
+      </div>
     </div>
   </div>
+</section>
+  </main>
 
   <!-- Footer -->
   <footer class="bg-white shadow p-4 text-center text-sm text-gray-600">
     &copy; 2025 - Mon projet GBA
   </footer>
+   <script src="public/emulator/zoomHandler.js"></script>
+</body>
+
+</html>
+
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
@@ -349,7 +503,30 @@
       button.addEventListener('mouseleave', () => triggerKey(key, 'keyup'));
     });
   </script>
+<script>
+  function toggleAccordion(event) {
+    const button = event.currentTarget;
+    const contentId = button.getAttribute('aria-controls');
+    const content = document.getElementById(contentId);
 
+    const expanded = button.getAttribute('aria-expanded') === 'true';
+
+    // Fermer toutes les sections (optionnel : pour laisser une seule ouverte)
+    document.querySelectorAll('#accordion > div > button').forEach(btn => {
+      btn.setAttribute('aria-expanded', 'false');
+      btn.querySelector('svg').classList.remove('rotate-180');
+      const sec = document.getElementById(btn.getAttribute('aria-controls'));
+      if (sec) sec.classList.add('hidden');
+    });
+
+    // Ouvrir ou fermer la section cliquée
+    if (!expanded) {
+      button.setAttribute('aria-expanded', 'true');
+      button.querySelector('svg').classList.add('rotate-180');
+      content.classList.remove('hidden');
+    }
+  }
+</script>
 
 </body>
 
