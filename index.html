@@ -40,7 +40,7 @@
       <div id="canvas-wrapper" class="relative mx-auto w-full max-w-[480px] h-auto" style="aspect-ratio: 3 / 2;">
         <img
           id="rom-image"
-          src="emulator/rom/pokemonRubis.jpg"
+          src="public/emulator/rom/pokemonRubis.jpg"
           alt="Pokémon Rubis"
           class="absolute inset-0 w-full h-full object-contain block"
         />
@@ -204,8 +204,8 @@
         startBtn.disabled = true;
         startBtn.textContent = 'Chargement en cours...';
 
-        const biosBuffer = await loadBinary('emulator/rom/bios.bin');
-        const romBuffer = await loadBinary('emulator/rom/PokemonRubis.gba');
+        const biosBuffer = await loadBinary('public/emulator/rom/bios.bin');
+        const romBuffer = await loadBinary('public/emulator/rom/PokemonRubis.gba');
 
         gba.setBios(biosBuffer, true);
         gba.setRom(romBuffer);
