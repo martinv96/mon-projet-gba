@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PokéAPI</title>
+  <link href="/src/output.css" rel="stylesheet" />
+</head>
+<body class="min-h-screen flex flex-col bg-gray-50">
+
+  <!-- Navbar -->
+  <header class="bg-orange-200 shadow">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-xl font-bold text-amber-800">Mon projet GBA</a>
+
+      <nav class="space-x-4 hidden md:block">
+        <a href="index.html" class="text-gray-700 hover:text-gray-600">Accueil</a>
+        <a href="pokedex.html" class="text-gray-700 hover:text-gray-600">Pokedex</a>
+        <a href="contact.html" class="text-gray-700 hover:text-gray-600">Contact</a>
+        <a href="apiPokemon.html" class="text-gray-700 hover:text-gray-600">API Pokémon</a>
+      </nav>
+
+      <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none" aria-label="Toggle menu">
+        ☰
+      </button>
+    </div>
+
+    <!-- Menu mobile -->
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 space-y-2">
+      <a href="index.html" class="block text-gray-700 hover:text-gray-600">Accueil</a>
+      <a href="pokedex.html" class="block text-gray-700 hover:text-gray-600">Pokedex</a>
+      <a href="contact.html" class="block text-gray-700 hover:text-gray-600">Contact</a>
+      <a href="apiPokemon.html" class="block text-gray-700 hover:text-gray-600">API Pokémon</a>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="flex-grow container mx-auto px-4 py-12 flex flex-col items-center">
+    <h2 class="text-3xl font-extrabold mb-8 text-center text-red-600">PokéAPI</h2>
+
+    <form id="pokemonForm" class="mb-8 flex flex-col sm:flex-row justify-center gap-4 w-full max-w-md">
+      <input 
+        type="text" 
+        id="pokemonInput" 
+        name="pokemon" 
+        placeholder="Entrez un nom ou un ID"
+        class="border border-gray-300 p-3 rounded-lg shadow-md flex-grow text-center focus:outline-none focus:ring-2 focus:ring-red-500" 
+        required
+        autocomplete="off"
+      />
+      <button 
+        type="submit" 
+        class="bg-red-600 text-white px-6 py-3 rounded-lg shadow hover:bg-red-700 transition duration-300"
+      >
+        Rechercher
+      </button>
+    </form>
+
+    <div id="pokemonResult" class="flex justify-center w-full max-w-md">
+      <!-- Résultat Pokémon ici -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white shadow p-4 text-center text-sm text-gray-600">
+    &copy; 2025 - Mon projet GBA
+  </footer>
+
+  <script>
+    // Toggle menu mobile
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Pokémon fetch logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('pokemonForm');
+      const input = document.getElementById('pokemonInput');
+      const result = document.getElementById('pokemonResult');
+
+      function getTypeBadge(type) {
+        const colors = {
+          normal: 'bg-gray-400',
+          fire: 'bg-red-500',
+          water: 'bg-blue-500',
+          electric: 'bg-yellow-400',
+          grass: 'bg-green-500',
+          ice: 'bg-cyan-300',
+          fighting: 'bg-red-700',
+          poison: 'bg-purple-600',
+          ground: 'bg-yellow-700',
+          flying: 'bg-indigo-300',
+          psychic: 'bg-pink-500',
+          bug: 'bg-green-600',
+          rock: 'bg-gray-700',
+          ghost: 'bg-indigo-900',
+          dragon: 'bg-purple-800',
+          dark: 'bg-gray-800',
+          steel: 'bg-gray-500',
+          fairy: 'bg-pink-400',
+        };
+        const colorClass = colors[type] || 'bg-gray-500';
+        return `<span class="text-white px-3 py-1 rounded-full text-sm font-semibold ${colorClass} capitalize mr-2">${type}</span>`;
+      }
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const query = input.value.trim().toLowerCase();
+        if (!query) return;
+
+        result.innerHTML = '<p class="text-gray-600 italic">Chargement...</p>';
+
+        fetch(`https://pokeapi.co/api/v2/pokemon/${encodeURIComponent(query)}`)
+          .then(response => {
+            if (!response.ok) throw new Error('Pokémon non trouvé');
+            return response.json();
+          })
+          .then(data => {
+            const typesBadges = data.types.map(t => getTypeBadge(t.type.name)).join('');
+            const html = `
+              <div class="bg-white rounded-xl shadow-lg p-6 max-w-sm w-full text-center">
+                <h3 class="text-3xl font-bold capitalize mb-4 text-red-600">${data.name}</h3>
+                <img src="${data.sprites.front_default}" alt="${data.name}" class="mx-auto mb-6 w-40 h-40" />
+                <div class="mb-4">${typesBadges}</div>
+                <div class="grid grid-cols-2 gap-4 text-gray-700 font-medium">
+                  <div>
+                    <p class="text-sm text-gray-500">Poids</p>
+                    <p>${data.weight / 10} kg</p>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-500">Hauteur</p>
+                    <p>${data.height / 10} m</p>
+                  </div>
+                </div>
+              </div>
+            `;
+            result.innerHTML = html;
+          })
+          .catch(error => {
+            result.innerHTML = `<p class="text-red-500 font-semibold">${error.message}</p>`;
+          });
+      });
+    });
+  </script>
+</body>
+</html>

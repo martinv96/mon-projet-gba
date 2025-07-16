@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mon projet Tailwind</title>
+  <link href="/src/output.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans min-h-screen flex flex-col">
+<!-- Navbar -->
+  <header class="bg-orange-200 shadow">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-xl font-bold text-amber-800">Mon projet GBA</a>
+
+      <nav class="space-x-4 hidden md:block">
+        <a href="index.html" class="text-gray-700 hover:text-gray-600">Accueil</a>
+        <a href="pokedex.html" class="text-gray-700 hover:text-gray-600">Pokedex</a>
+        <a href="contact.html" class="text-gray-700 hover:text-gray-600">Contact</a>
+        <a href="apiPokemon.html" class="text-gray-700 hover:text-gray-600">API Pokémon</a>
+      </nav>
+
+      <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none" aria-label="Toggle menu">
+        ☰
+      </button>
+    </div>
+
+    <!-- Menu mobile -->
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 space-y-2">
+      <a href="index.html" class="block text-gray-700 hover:text-gray-600">Accueil</a>
+      <a href="pokedex.html" class="block text-gray-700 hover:text-gray-600">Pokedex</a>
+      <a href="contact.html" class="block text-gray-700 hover:text-gray-600">Contact</a>
+      <a href="apiPokemon.html" class="block text-gray-700 hover:text-gray-600">API Pokémon</a>
+    </div>
+  </header>
+  <div class="max-w-6xl mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <!-- Partie principale : émulateur -->
+    <div class="col-span-2">
+      <h1 class="text-3xl font-bold text-center mb-6 text-red-600">Émulateur Pokémon Rouge Feu</h1>
+
+      <div id="canvas-wrapper" class="relative mx-auto w-full max-w-[480px] h-auto" style="aspect-ratio: 3 / 2;">
+        <img
+          id="rom-image"
+          src="emulator/rom/pokemonRubis.jpg"
+          alt="Pokémon Rubis"
+          class="absolute inset-0 w-full h-full object-contain block"
+        />
+        <canvas
+          id="gba-screen"
+          width="480"
+          height="320"
+          class="absolute inset-0 border border-gray-500 rounded-lg hidden"
+          style="image-rendering: pixelated; image-rendering: crisp-edges;"
+        ></canvas>
+      </div>
+
+      <!-- Boutons tactiles -->
+      <div id="mobile-controls" class="mt-4 flex flex-wrap justify-center gap-3 max-w-[480px] mx-auto">
+        <div class="grid grid-cols-3 grid-rows-3 gap-2 select-none">
+          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-2 row-start-1" data-key="ArrowUp">↑</button>
+          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-1 row-start-2" data-key="ArrowLeft">←</button>
+          <div></div>
+          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-2 row-start-2" disabled></button>
+          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-3 row-start-2" data-key="ArrowRight">→</button>
+          <div></div>
+          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-2 row-start-3" data-key="ArrowDown">↓</button>
+        </div>
+
+        <div class="flex flex-col justify-center gap-3 select-none">
+          <div class="flex gap-3 justify-center">
+            <button class="btn-control bg-red-500 text-white rounded-full w-12 h-12 shadow hover:bg-red-600" data-key="KeyZ">A</button>
+            <button class="btn-control bg-blue-500 text-white rounded-full w-12 h-12 shadow hover:bg-blue-600" data-key="KeyX">B</button>
+          </div>
+          <div class="flex gap-3 justify-center mt-2">
+            <button class="btn-control bg-green-500 text-white rounded px-5 py-1 shadow hover:bg-green-600" data-key="Enter">Start</button>
+            <button class="btn-control bg-yellow-400 text-white rounded px-5 py-1 shadow hover:bg-yellow-500" data-key="ShiftLeft">Select</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <button id="reset-positions" class="bg-gray-800 hover:bg-black text-white py-2 px-4 rounded shadow">Réinitialiser les positions</button>
+      </div>
+
+      <div class="mt-4 text-center">
+        <button id="startBtn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg shadow">Lancer l’émulateur</button>
+      </div>
+
+      <div class="mt-2 text-center">
+        <label for="zoomSelect" class="mr-2 font-semibold text-gray-700">Zoom :</label>
+        <select id="zoomSelect" class="border rounded p-1 shadow">
+          <option value="1">x1</option>
+          <option value="2" selected>x2</option>
+          <option value="3">x3</option>
+          <option value="4">x4</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Partie droite : commandes -->
+    <div class="bg-gray-100 p-4 rounded-lg shadow-lg">
+      <h2 class="text-xl font-semibold text-center mb-4">Commandes</h2>
+      <ul class="space-y-2 text-gray-700 text-sm md:text-base">
+        <li><strong>↑ ↓ ← →</strong> : Déplacements</li>
+        <li><strong>Z</strong> : A (valider)</li>
+        <li><strong>X</strong> : B (annuler)</li>
+        <li><strong>Entrée</strong> : Start</li>
+        <li><strong>Shift</strong> : Select</li>
+        <li><strong>A</strong> : L</li>
+        <li><strong>S</strong> : R</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white shadow p-4 text-center text-sm text-gray-600">
+    &copy; 2025 - Mon projet GBA
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-o9N1j7kF2ChljbAx+opvaEke3eIT3QnN3KaC2F0p5Mw="
+    crossorigin="">
+  </script>
+
+  <!-- JS général -->
+  <script>
+    // Menu mobile toggle
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+  </script>
+
+  <!-- Scripts émulateur -->
+  <script src="emulator/gbajs/js/gba.js"></script>
+  <script src="emulator/gbajs/js/arm.js"></script>
+  <script src="emulator/gbajs/js/audio.js"></script>
+  <script src="emulator/gbajs/js/core.js"></script>
+  <script src="emulator/gbajs/js/gpio.js"></script>
+  <script src="emulator/gbajs/js/io.js"></script>
+  <script src="emulator/gbajs/js/irq.js"></script>
+  <script src="emulator/gbajs/js/keypad.js"></script>
+  <script src="emulator/gbajs/js/mmu.js"></script>
+  <script src="emulator/gbajs/js/savedata.js"></script>
+  <script src="emulator/gbajs/js/sio.js"></script>
+  <script src="emulator/gbajs/js/thumb.js"></script>
+  <script src="emulator/gbajs/js/video.js"></script>
+  <script src="emulator/gbajs/js/util.js"></script>
+  <script src="emulator/gbajs/js/video/proxy.js"></script>
+  <script src="emulator/gbajs/js/video/software.js"></script>
+  <script src="emulator/gbajs/ressources/xhr.js"></script>
+  <script src="emulator/gbajs/ressources/console.js"></script>
+
+  <script>
+    const canvas = document.getElementById('gba-screen');
+    const startBtn = document.getElementById('startBtn');
+    const zoomSelect = document.getElementById('zoomSelect');
+    const romImage = document.getElementById('rom-image');
+    let gba = null;
+
+    const baseWidth = 240;
+    const baseHeight = 160;
+
+    function applyZoom(factor) {
+      const containerWidth = document.getElementById('canvas-wrapper').clientWidth;
+      let newWidth = baseWidth * factor;
+      let newHeight = baseHeight * factor;
+
+      if (newWidth > containerWidth) {
+        const scaleDownFactor = containerWidth / newWidth;
+        newWidth = containerWidth;
+        newHeight = baseHeight * factor * scaleDownFactor;
+      }
+
+      canvas.width = newWidth;
+      canvas.height = newHeight;
+      canvas.style.width = `${newWidth}px`;
+      canvas.style.height = `${newHeight}px`;
+
+      const ctx = canvas.getContext('2d');
+      ctx.imageSmoothingEnabled = false;
+      canvas.style.imageRendering = "pixelated";
+      canvas.style.imageRendering = "crisp-edges";
+    }
+
+    applyZoom(parseInt(zoomSelect.value));
+    zoomSelect.addEventListener('change', () => applyZoom(parseInt(zoomSelect.value)));
+
+    async function loadBinary(path) {
+      const response = await fetch(path);
+      if (!response.ok) throw new Error(`Erreur : ${response.statusText}`);
+      return await response.arrayBuffer();
+    }
+
+    startBtn.addEventListener('click', async () => {
+      if (gba) return;
+
+      try {
+        gba = new GameBoyAdvance();
+        gba.setLogger((level, message) => console.log('GBA log:', level, message));
+        gba.setCanvas(canvas);
+
+        startBtn.disabled = true;
+        startBtn.textContent = 'Chargement en cours...';
+
+        const biosBuffer = await loadBinary('emulator/rom/bios.bin');
+        const romBuffer = await loadBinary('emulator/rom/PokemonRubis.gba');
+
+        gba.setBios(biosBuffer, true);
+        gba.setRom(romBuffer);
+        gba.runStable();
+
+        romImage.style.display = 'none';
+        canvas.classList.remove('hidden');
+        startBtn.textContent = 'Émulateur lancé';
+      } catch (e) {
+        console.error(e);
+        alert('Erreur : ' + e.message);
+        gba = null;
+        startBtn.textContent = 'Lancer l’émulateur';
+        startBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
