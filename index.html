@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mon projet Tailwind</title>
   <link href="src/output.css" rel="stylesheet" />
 </head>
+
 <body class="bg-gray-100 text-gray-900 font-sans min-h-screen flex flex-col">
-<!-- Navbar -->
+  <!-- Navbar -->
   <header class="bg-orange-200 shadow">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
       <a href="index.html" class="text-xl font-bold text-amber-800">Mon projet GBA</a>
@@ -38,56 +40,62 @@
       <h1 class="text-3xl font-bold text-center mb-6 text-red-600">Émulateur Pokémon Rouge Feu</h1>
 
       <div id="canvas-wrapper" class="relative mx-auto w-full max-w-[480px] h-auto" style="aspect-ratio: 3 / 2;">
-        <img
-          id="rom-image"
-          src="public/emulator/rom/pokemonRubis.jpg"
-          alt="Pokémon Rubis"
-          class="absolute inset-0 w-full h-full object-contain block"
-        />
-        <canvas
-          id="gba-screen"
-          width="480"
-          height="320"
+        <img id="rom-image" src="public/emulator/rom/pokemonRubis.jpg" alt="Pokémon Rubis"
+          class="absolute inset-0 w-full h-full object-contain block" />
+        <canvas id="gba-screen" width="480" height="320"
           class="absolute inset-0 border border-gray-500 rounded-lg hidden"
-          style="image-rendering: pixelated; image-rendering: crisp-edges;"
-        ></canvas>
+          style="image-rendering: pixelated; image-rendering: crisp-edges;"></canvas>
       </div>
 
       <!-- Boutons tactiles -->
       <div id="mobile-controls" class="mt-4 flex flex-wrap justify-center gap-3 max-w-[480px] mx-auto">
         <div class="grid grid-cols-3 grid-rows-3 gap-2 select-none">
-          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-2 row-start-1" data-key="ArrowUp">↑</button>
-          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-1 row-start-2" data-key="ArrowLeft">←</button>
+          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-2 row-start-1"
+            data-key="ArrowUp">↑</button>
+          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-1 row-start-2"
+            data-key="ArrowLeft">←</button>
           <div></div>
-          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-2 row-start-2" disabled></button>
-          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-3 row-start-2" data-key="ArrowRight">→</button>
+          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-2 row-start-2"
+            disabled></button>
+          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-3 row-start-2"
+            data-key="ArrowRight">→</button>
           <div></div>
-          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-2 row-start-3" data-key="ArrowDown">↓</button>
+          <button class="btn-control bg-gray-300 rounded px-4 py-2 shadow hover:bg-gray-400 col-start-2 row-start-3"
+            data-key="ArrowDown">↓</button>
         </div>
 
         <div class="flex flex-col justify-center gap-3 select-none">
           <div class="flex gap-3 justify-center">
-            <button class="btn-control bg-red-500 text-white rounded-full w-12 h-12 shadow hover:bg-red-600" data-key="KeyZ">A</button>
-            <button class="btn-control bg-blue-500 text-white rounded-full w-12 h-12 shadow hover:bg-blue-600" data-key="KeyX">B</button>
+            <button class="btn-control bg-red-500 text-white rounded-full w-12 h-12 shadow hover:bg-red-600"
+              data-key="KeyZ">A</button>
+            <button class="btn-control bg-blue-500 text-white rounded-full w-12 h-12 shadow hover:bg-blue-600"
+              data-key="KeyX">B</button>
           </div>
           <div class="flex gap-3 justify-center mt-2">
-  <button class="btn-control bg-purple-500 text-white rounded px-4 py-1 shadow hover:bg-purple-600" data-key="KeyA">L</button>
-  <button class="btn-control bg-indigo-500 text-white rounded px-4 py-1 shadow hover:bg-indigo-600" data-key="KeyS">R</button>
-</div>
+            <button class="btn-control bg-purple-500 text-white rounded px-4 py-1 shadow hover:bg-purple-600"
+              data-key="KeyA">L</button>
+            <button class="btn-control bg-indigo-500 text-white rounded px-4 py-1 shadow hover:bg-indigo-600"
+              data-key="KeyS">R</button>
+          </div>
 
           <div class="flex gap-3 justify-center mt-2">
-            <button class="btn-control bg-green-500 text-white rounded px-5 py-1 shadow hover:bg-green-600" data-key="Enter">Start</button>
-            <button class="btn-control bg-yellow-400 text-white rounded px-5 py-1 shadow hover:bg-yellow-500" data-key="ShiftLeft">Select</button>
+            <button class="btn-control bg-green-500 text-white rounded px-5 py-1 shadow hover:bg-green-600"
+              data-key="Enter">Start</button>
+            <button class="btn-control bg-yellow-400 text-white rounded px-5 py-1 shadow hover:bg-yellow-500"
+              data-key="ShiftLeft">Select</button>
           </div>
         </div>
       </div>
 
       <div class="text-center mt-4">
-        <button id="reset-positions" class="bg-gray-800 hover:bg-black text-white py-2 px-4 rounded shadow">Réinitialiser les positions</button>
+        <button id="reset-positions"
+          class="bg-gray-800 hover:bg-black text-white py-2 px-4 rounded shadow">Réinitialiser les positions</button>
       </div>
 
       <div class="mt-4 text-center">
-        <button id="startBtn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg shadow">Lancer l’émulateur</button>
+        <button id="startBtn"
+          class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg shadow">Lancer
+          l’émulateur</button>
       </div>
 
       <div class="mt-2 text-center">
@@ -126,168 +134,258 @@
 
 
   <!-- JS général -->
-<script>
-  // Menu mobile toggle
-  document.getElementById('menu-toggle').addEventListener('click', () => {
-    const menu = document.getElementById('mobile-menu');
-    menu.classList.toggle('hidden');
-  });
-</script>
+  <script>
+    // Menu mobile toggle
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+  </script>
 
-<!-- Scripts émulateur -->
-<script src="public/emulator/gbajs/js/gba.js"></script>
-<script src="public/emulator/gbajs/js/arm.js"></script>
-<script src="public/emulator/gbajs/js/audio.js"></script>
-<script src="public/emulator/gbajs/js/core.js"></script>
-<script src="public/emulator/gbajs/js/gpio.js"></script>
-<script src="public/emulator/gbajs/js/io.js"></script>
-<script src="public/emulator/gbajs/js/irq.js"></script>
-<script src="public/emulator/gbajs/js/keypad.js"></script>
-<script src="public/emulator/gbajs/js/mmu.js"></script>
-<script src="public/emulator/gbajs/js/savedata.js"></script>
-<script src="public/emulator/gbajs/js/sio.js"></script>
-<script src="public/emulator/gbajs/js/thumb.js"></script>
-<script src="public/emulator/gbajs/js/video.js"></script>
-<script src="public/emulator/gbajs/js/util.js"></script>
-<script src="public/emulator/gbajs/js/video/proxy.js"></script>
-<script src="public/emulator/gbajs/js/video/software.js"></script>
-<script src="public/emulator/gbajs/resources/xhr.js"></script>
-<script src="public/emulator/gbajs/resources/console.js"></script>
+  <!-- Scripts émulateur -->
+  <script src="public/emulator/gbajs/js/gba.js"></script>
+  <script src="public/emulator/gbajs/js/arm.js"></script>
+  <script src="public/emulator/gbajs/js/audio.js"></script>
+  <script src="public/emulator/gbajs/js/core.js"></script>
+  <script src="public/emulator/gbajs/js/gpio.js"></script>
+  <script src="public/emulator/gbajs/js/io.js"></script>
+  <script src="public/emulator/gbajs/js/irq.js"></script>
+  <script src="public/emulator/gbajs/js/keypad.js"></script>
+  <script src="public/emulator/gbajs/js/mmu.js"></script>
+  <script src="public/emulator/gbajs/js/savedata.js"></script>
+  <script src="public/emulator/gbajs/js/sio.js"></script>
+  <script src="public/emulator/gbajs/js/thumb.js"></script>
+  <script src="public/emulator/gbajs/js/video.js"></script>
+  <script src="public/emulator/gbajs/js/util.js"></script>
+  <script src="public/emulator/gbajs/js/video/proxy.js"></script>
+  <script src="public/emulator/gbajs/js/video/software.js"></script>
+  <script src="public/emulator/gbajs/resources/xhr.js"></script>
+  <script src="public/emulator/gbajs/resources/console.js"></script>
 
-<script>
-  const canvas = document.getElementById('gba-screen');
-  const startBtn = document.getElementById('startBtn');
-  const zoomSelect = document.getElementById('zoomSelect');
-  const romImage = document.getElementById('rom-image');
-  let gba = null;
+  <script>
+    const canvas = document.getElementById('gba-screen');
+    const startBtn = document.getElementById('startBtn');
+    const zoomSelect = document.getElementById('zoomSelect');
+    const romImage = document.getElementById('rom-image');
+    let gba = null;
 
-  const baseWidth = 240;
-  const baseHeight = 160;
+    const baseWidth = 240;
+    const baseHeight = 160;
 
-  function applyZoom(factor) {
-    const containerWidth = document.getElementById('canvas-wrapper').clientWidth;
-    let newWidth = baseWidth * factor;
-    let newHeight = baseHeight * factor;
+    function applyZoom(factor) {
+      const containerWidth = document.getElementById('canvas-wrapper').clientWidth;
+      let newWidth = baseWidth * factor;
+      let newHeight = baseHeight * factor;
 
-    if (newWidth > containerWidth) {
-      const scaleDownFactor = containerWidth / newWidth;
-      newWidth = containerWidth;
-      newHeight = baseHeight * factor * scaleDownFactor;
+      if (newWidth > containerWidth) {
+        const scaleDownFactor = containerWidth / newWidth;
+        newWidth = containerWidth;
+        newHeight = baseHeight * factor * scaleDownFactor;
+      }
+
+      canvas.width = newWidth;
+      canvas.height = newHeight;
+      canvas.style.width = `${newWidth}px`;
+      canvas.style.height = `${newHeight}px`;
+
+      const ctx = canvas.getContext('2d');
+      ctx.imageSmoothingEnabled = false;
+      canvas.style.imageRendering = "pixelated";
+      canvas.style.imageRendering = "crisp-edges";
     }
 
-    canvas.width = newWidth;
-    canvas.height = newHeight;
-    canvas.style.width = `${newWidth}px`;
-    canvas.style.height = `${newHeight}px`;
+    applyZoom(parseInt(zoomSelect.value));
+    zoomSelect.addEventListener('change', () => applyZoom(parseInt(zoomSelect.value)));
 
-    const ctx = canvas.getContext('2d');
-    ctx.imageSmoothingEnabled = false;
-    canvas.style.imageRendering = "pixelated";
-    canvas.style.imageRendering = "crisp-edges";
-  }
-
-  applyZoom(parseInt(zoomSelect.value));
-  zoomSelect.addEventListener('change', () => applyZoom(parseInt(zoomSelect.value)));
-
-  async function loadBinary(path) {
-    const response = await fetch(path);
-    if (!response.ok) throw new Error(`Erreur : ${response.statusText}`);
-    return await response.arrayBuffer();
-  }
-
-  startBtn.addEventListener('click', async () => {
-    if (gba) return;
-
-    try {
-      gba = new GameBoyAdvance();
-      gba.setLogger((level, message) => console.log('GBA log:', level, message));
-      gba.setCanvas(canvas);
-
-      startBtn.disabled = true;
-      startBtn.textContent = 'Chargement en cours...';
-
-      const biosBuffer = await loadBinary('public/emulator/rom/bios.bin');
-      const romBuffer = await loadBinary('public/emulator/rom/PokemonRubis.gba');
-
-      gba.setBios(biosBuffer, true);
-      gba.setRom(romBuffer);
-      gba.runStable();
-
-      romImage.style.display = 'none';
-      canvas.classList.remove('hidden');
-      startBtn.textContent = 'Émulateur lancé';
-    } catch (e) {
-      console.error(e);
-      alert('Erreur : ' + e.message);
-      gba = null;
-      startBtn.textContent = 'Lancer l’émulateur';
-      startBtn.disabled = false;
+    async function loadBinary(path) {
+      const response = await fetch(path);
+      if (!response.ok) throw new Error(`Erreur : ${response.statusText}`);
+      return await response.arrayBuffer();
     }
-  });
-</script>
 
-<script>
-  // Simule une pression de touche clavier quand un bouton est cliqué
-  document.querySelectorAll('.btn-control').forEach(button => {
-    button.addEventListener('click', () => {
-      const key = button.getAttribute('data-key');
+    startBtn.addEventListener('click', async () => {
+      if (gba) return;
+
+      try {
+        gba = new GameBoyAdvance();
+        gba.setLogger((level, message) => console.log('GBA log:', level, message));
+        gba.setCanvas(canvas);
+
+        startBtn.disabled = true;
+        startBtn.textContent = 'Chargement en cours...';
+
+        const biosBuffer = await loadBinary('public/emulator/rom/bios.bin');
+        const romBuffer = await loadBinary('public/emulator/rom/PokemonRubis.gba');
+
+        gba.setBios(biosBuffer, true);
+        gba.setRom(romBuffer);
+        gba.runStable();
+
+        romImage.style.display = 'none';
+        canvas.classList.remove('hidden');
+        startBtn.textContent = 'Émulateur lancé';
+      } catch (e) {
+        console.error(e);
+        alert('Erreur : ' + e.message);
+        gba = null;
+        startBtn.textContent = 'Lancer l’émulateur';
+        startBtn.disabled = false;
+      }
+    });
+  </script>
+
+  <script>
+    // Gestion des boutons tactiles
+    document.querySelectorAll('.btn-control').forEach(button => {
+      const key = button.dataset.key;
+
       if (!key) return;
 
-      const event = new KeyboardEvent('keydown', {
-        key: key.length === 1 ? key : '',
-        code: key,
-        bubbles: true
+      button.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        if (gba && gba.keypad) {
+          gba.keypad.keyboardHandler({ code: key, type: 'keydown' });
+        }
       });
-      window.dispatchEvent(event);
 
-      // Ajoute aussi un keyup pour éviter le "blocage"
-      const eventUp = new KeyboardEvent('keyup', {
-        key: key.length === 1 ? key : '',
-        code: key,
-        bubbles: true
+      button.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        if (gba && gba.keypad) {
+          gba.keypad.keyboardHandler({ code: key, type: 'keyup' });
+        }
       });
-      setTimeout(() => window.dispatchEvent(eventUp), 100); // 100ms plus tard
-    });
-  });
-</script>
 
-<!-- *** Ici la gestion tactile remplacée par la tienne *** -->
-<script>
-  // Gère les boutons tactiles
-  document.querySelectorAll('.btn-control').forEach(button => {
-    button.addEventListener('touchstart', (e) => {
-      e.preventDefault(); // Empêche le zoom ou le scroll
-      const key = button.getAttribute('data-key');
-      if (key && gba) {
-        gba.keypad.registerKeyPress(key);
-      }
-    });
+      // Aussi pour compatibilité avec clic souris
+      button.addEventListener('mousedown', (e) => {
+        if (gba && gba.keypad) {
+          gba.keypad.keyboardHandler({ code: key, type: 'keydown' });
+        }
+      });
 
-    button.addEventListener('touchend', (e) => {
+      button.addEventListener('mouseup', (e) => {
+        if (gba && gba.keypad) {
+          gba.keypad.keyboardHandler({ code: key, type: 'keyup' });
+        }
+      });
+    });
+  </script>
+
+
+  <script>
+    // Simule une pression de touche clavier quand un bouton est cliqué
+    document.querySelectorAll('.btn-control').forEach(button => {
+      button.addEventListener('click', () => {
+        const key = button.getAttribute('data-key');
+        if (!key) return;
+
+        const event = new KeyboardEvent('keydown', {
+          key: key.length === 1 ? key : '',
+          code: key,
+          bubbles: true
+        });
+        window.dispatchEvent(event);
+
+        // Ajoute aussi un keyup pour éviter le "blocage"
+        const eventUp = new KeyboardEvent('keyup', {
+          key: key.length === 1 ? key : '',
+          code: key,
+          bubbles: true
+        });
+        setTimeout(() => window.dispatchEvent(eventUp), 100); // 100ms plus tard
+      });
+    });
+  </script>
+
+  <script>
+    // Simulation des touches avec les boutons tactiles
+    const keypad = new GameBoyAdvanceKeypad();
+keypad.registerHandlers();
+keypad.eatInput = true;
+
+// Mappage des codes clavier (data-key) vers les propriétés du keypad
+const keyMap = {
+  "ArrowUp": "UP",
+  "ArrowDown": "DOWN",
+  "ArrowLeft": "LEFT",
+  "ArrowRight": "RIGHT",
+  "KeyZ": "A",
+  "KeyX": "B",
+  "KeyA": "L",
+  "KeyS": "R",
+  "Enter": "START",
+  "ShiftLeft": "SELECT",
+};
+
+function pressKey(logicalKey) {
+  if (!(logicalKey in keypad)) return;
+  const bit = 1 << keypad[logicalKey];
+  keypad.currentDown &= ~bit;
+}
+
+function releaseKey(logicalKey) {
+  if (!(logicalKey in keypad)) return;
+  const bit = 1 << keypad[logicalKey];
+  keypad.currentDown |= bit;
+}
+
+function bindTouchButtons() {
+  // Sélectionne tous les boutons avec data-key
+  const buttons = document.querySelectorAll("#mobile-controls button[data-key]");
+  buttons.forEach(button => {
+    const dataKey = button.getAttribute("data-key");
+    const logicalKey = keyMap[dataKey];
+
+    if (!logicalKey) return; // pas dans la map, ignore
+
+    button.addEventListener("touchstart", e => {
       e.preventDefault();
-      const key = button.getAttribute('data-key');
-      if (key && gba) {
-        gba.keypad.registerKeyRelease(key);
-      }
+      pressKey(logicalKey);
     });
 
-    // Supporte aussi la souris (desktop)
-    button.addEventListener('mousedown', () => {
-      const key = button.getAttribute('data-key');
-      if (key && gba) {
-        gba.keypad.registerKeyPress(key);
-      }
+    button.addEventListener("touchend", e => {
+      e.preventDefault();
+      releaseKey(logicalKey);
     });
 
-    button.addEventListener('mouseup', () => {
-      const key = button.getAttribute('data-key');
-      if (key && gba) {
-        gba.keypad.registerKeyRelease(key);
-      }
+    button.addEventListener("mousedown", e => {
+      e.preventDefault();
+      pressKey(logicalKey);
+    });
+
+    button.addEventListener("mouseup", e => {
+      e.preventDefault();
+      releaseKey(logicalKey);
+    });
+
+    button.addEventListener("mouseleave", e => {
+      e.preventDefault();
+      releaseKey(logicalKey);
     });
   });
-</script>
+}
+
+// Démarre la liaison tactile
+bindTouchButtons();
+
+function gameLoop() {
+  keypad.pollGamepads();
+  requestAnimationFrame(gameLoop);
+}
+
+gameLoop();
+
+button.addEventListener('touchcancel', (e) => {
+  e.preventDefault();
+  if (gba && gba.keypad) {
+    gba.keypad.keyboardHandler({ code: key, type: 'keyup' });
+  }
+});
+
+
+  </script>
+
 
 
 </body>
+
 </html>
