@@ -189,19 +189,19 @@ const roms = {
     rom: 'public/emulator/rom/Legend of Zelda, The - The Minish Cap (Europe) (En,Fr,De,Es,It).gba'
   },
   harryPotter2: {
-    image: 'public/emulator/rom/images/harryPotter2.jpg',
+    image: 'public/emulator/rom/images/HarryPotterChambre.jpg',
     rom: 'public/emulator/rom/Harry Potter and the Chamber of Secrets (USA, Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da).gba'
   },
   harryPotter3: {
-    image: 'public/emulator/rom/images/harryPotter3.jpg',
+    image: 'public/emulator/rom/images/HarryPotterPrisonnier.jpg',
     rom: 'public/emulator/rom/Harry Potter and the Prisoner of Azkaban (USA, Europe) (En,Fr,De,Es,It,Nl,Da).gba'
   },
   harryPotter4: {
-    image: 'public/emulator/rom/images/harryPotter4.jpg',
+    image: 'public/emulator/rom/images/HarryPotterCoupe.jpg',
     rom: 'public/emulator/rom/Harry Potter and the Goblet of Fire (USA, Europe) (En,Fr,De,Es,It,Nl,Da).gba'
   },
   harryPotter5: {
-    image: 'public/emulator/rom/images/harryPotter5.jpg',
+    image: 'public/emulator/rom/images/HarryPotterOrdre.jpg',
     rom: 'public/emulator/rom/Harry Potter and the Order of the Phoenix (Europe) (En,Fr,De,Es,It,Nl,Da).gba'
   },
   princeOfPersia: {
@@ -209,15 +209,15 @@ const roms = {
     rom: 'public/emulator/rom/Prince of Persia - The Sands of Time (Europe) (En,Fr,De,Es,It,Nl).gba'
   },
   LordOfTheRings1: {
-    image: 'public/emulator/rom/images/lordOfTheRings1.jpg',
+    image: 'public/emulator/rom/images/LordOfTheRingsCommunaute.jpg',
     rom: 'public/emulator/rom/Lord of the Rings, The - The Fellowship of the Ring (Europe) (En,Fr,De,Es,It).gba'
   },
   LordOfTheRings2: {
-    image: 'public/emulator/rom/images/lordOfTheRings2.jpg',
+    image: 'public/emulator/rom/images/LordOfTheRingsDeuxTours.jpg',
     rom: 'public/emulator/rom/Lord of the Rings, The - The Two Towers (USA, Europe) (En,Fr,De,Es,It,Nl).gba'
   },
   LordOfTheRings3: {
-    image: 'public/emulator/rom/images/lordOfTheRings3.jpg',
+    image: 'public/emulator/rom/images/LordOfTheRingsRetourDuRoi.jpg',
     rom: 'public/emulator/rom/Lord of the Rings, The - The Return of the King (USA, Europe) (En,Fr,De,Es,It).gba'
   },
   Tarzan: {
@@ -225,23 +225,23 @@ const roms = {
     rom: 'public/emulator/rom/Tarzan - L\'Appel de la Jungle (France).gba'
   },
   Rayman3: {
-    image: 'public/emulator/rom/images/rayman3.jpg',
+    image: 'public/emulator/rom/images/RaymanTrois.jpg',
     rom: 'public/emulator/rom/Rayman 3 (Europe) (En,Fr,De,Es,It,Nl,Sv,No,Da,Fi).gba'
   },
   RaymanAdvance: {
-    image: 'public/emulator/rom/images/raymanAdvance.jpg',
+    image: 'public/emulator/rom/images/RaymanAdvance.jpg',
     rom: 'public/emulator/rom/Rayman Advance (Europe) (En,Fr,De,Es,It).gba'
   },
   GoldenSun: {
-    image: 'public/emulator/rom/images/goldenSun.jpg',
+    image: 'public/emulator/rom/images/GoldenSun.jpg',
     rom: 'public/emulator/rom/Golden Sun (France).gba'
   },
   MetroidFusion: {
-    image: 'public/emulator/rom/images/metroidFusion.jpg',
+    image: 'public/emulator/rom/images/MetroidFusion.jpg',
     rom: 'public/emulator/rom/Metroid Fusion (Europe) (En,Fr,De,Es,It).gba'
   },
   MetroidZeroMission: {
-    image: 'public/emulator/rom/images/metroidZeroMission.jpg',
+    image: 'public/emulator/rom/images/MetroidZeroMission.jpg',
     rom: 'public/emulator/rom/Metroid Fusion (Europe) (En,Fr,De,Es,It).gba'
   },
 };
